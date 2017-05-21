@@ -1,0 +1,86 @@
+
+/*원아 선택 스크롤 영역*/
+#childSelect1 {
+position: absolute;
+top:15%;
+left:5%;
+width:90%;
+height: 70%;
+border: 2px black solid;
+overflow-x: hidden;
+overflow-y: scroll;
+}
+
+  /*스크롤 바 보이지 않게 하기*/
+#childSelect1::-webkit-scrollbar{
+  display: none;
+}
+
+
+
+
+  /*사진이름 틀*/
+#childSelect1 > div{
+  position: relative;
+  top:5%;
+  left:5%;
+  width: 90%;
+  /*border: 2px red solid;*/
+  margin-top: 3%;
+  background-color: #DCE6F2;
+
+}
+
+  /*사진*/
+#childSelect1 > div > img{
+  position: relative;
+  margin-top: 1%;
+  left:10%;
+  width:30%;
+  border: 2px black solid;
+  border-radius: 100%;
+}
+
+  /*이름 틀*/
+#childSelect1 > div > div{
+  position: relative;
+  width: 30%;
+  float: right;
+  margin-top: 3%;
+  margin-right: 7%;
+  padding: 7%;
+  background-color: #4F81BD;
+  border-radius: 10%;
+
+}
+  /*이름 글씨*/
+#childSelect1 > div > div > p{
+  position: relative;
+}
+
+
+
+#childSearchBox1{
+  position: absolute;
+  top:90%;
+  left:5%;
+  width: 60%;
+  height: 5%;
+  border: 2px black solid;
+  text-align: center;
+}
+
+#childSearchBtn1{
+  position: absolute;
+  top:90%;
+  right:5%;
+  width: 23%;
+  height: 5.5%;
+  border: 2px black solid;
+}
+
+#childSearchBtn1 > p{
+  padding-top: 5%;
+  text-align: center;
+  font-size: 120%;
+}
