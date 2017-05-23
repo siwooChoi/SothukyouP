@@ -1,0 +1,44 @@
+
+#tDevelopCheck{
+  position: absolute;
+  top:10%;
+}
+
+  /*사진이름 틀*/
+#tDevelopChildInfo{
+  position: relative;
+  top:5%;
+  left:5%;
+  width: 90%;
+  /*border: 2px red solid;*/
+  margin-top: 3%;
+  background-color: #DCE6F2;
+
+}
+
+  /*사진*/
+#tDevelopChildInfo > div > img{
+  position: relative;
+  margin-top: 1%;
+  left:10%;
+  width:30%;
+  border: 2px black solid;
+  border-radius: 100%;
+}
+
+  /*이름 틀*/
+#tDevelopChildInfo > div > div{
+  position: relative;
+  width: 30%;
+  float: right;
+  margin-top: 3%;
+  margin-right: 7%;
+  padding: 7%;
+  background-color: #4F81BD;
+  border-radius: 10%;
+
+}
+  /*이름 글씨*/
+#tDevelopChildInfo > div > div > p{
+  position: relative;
+}

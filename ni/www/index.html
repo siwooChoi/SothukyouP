@@ -9,6 +9,8 @@
       <link rel="stylesheet" href="./css/tAlbum.css">
       <link rel="stylesheet" href="./css/selectChild.css">
       <link rel="stylesheet" href="./css/observation.css">
+      <link rel="stylesheet" href="./css/tDevelopCheck.css">
+
       <!-- <script src="../platforms/browser/platform_www/cordova.js"></script> -->
       <!-- <script src="../platforms/browser/platform_www/cordova_plugins.js"></script> -->
       <script src="./js/jquery-3.2.1.min.js"></script>
@@ -165,16 +167,15 @@
       		<button id="btnPrev">되돌리기</button>
       		<button id="btnClea">Clear</button>
       	</div>
-        <!-- <button id="btnSave">다운로드</button> -->
-        <!-- <form method="POST" name="form" id="form">
-  <textarea name="base64" id="base64"></textarea>
-  <button type="submit" id="btnSave">
-    Send image
-  </button> -->
-</form>
-
+              <!-- <button id="btnSave">다운로드</button> -->
+              <!-- <form method="POST" name="form" id="form">
+        <textarea name="base64" id="base64"></textarea>
+        <button type="submit" id="btnSave">
+          Send image
+        </button>
+      </form> -->
       </div>
-      <img id="saveImg" src="" style="display:none;" />
+      <!-- <img id="saveImg" src="" style="display:none;" /> -->
 
       <!-- end -->
 
@@ -193,6 +194,34 @@
 
   <!-- ////////////////////교사 관찰일지 작성 도우미  끝부분////////////////////////////////-->
   <!-- ///////////////    교사 발달 행동 체크          ////////////////////////-->
+  <div id="tDevelopCheck">
+      <!-- 선택한 원아 정보 -->
+    <div id="tDevelopChildInfo">
+    </div>
+
+      <!-- 항목 표시 틀-->
+    <div id="tDevelopCheckDiv">
+    </div>
+
+    <table id="tDevelopCheckCancelSave">
+      <tr>
+        <td>
+            <!-- 취소 버튼 -->
+          <div id="tDevelopCheckCancelBtn">
+            <p>취소</p>
+          </div>
+          </td>
+          <td>
+            <!-- 저장 버튼 -->
+          <div id="tDevelopCheckSaveBtn">
+            <p>저장</p>
+          </div>
+        </td>
+      </tr>
+      
+    </tabel>
+
+  </div>
 
 
 
@@ -227,6 +256,7 @@
     <div id="etcPicture"><p>기타 사진</p></div>
     <input id="albumChildSearchBox" type="text">
     <div id="albumChildSearchBtn"><p>검색</p></div>
+
 
   </div>
 
