@@ -13,14 +13,12 @@ $(document).ready(function(){
   $('#tLoginTop').show();
   $('#teacherMain').show();
 
-  function setEvent(){
 
-  }
 
 
 
   // 교사아이디로 로그인버튼 클릭
-  $('#LoginBtn').unbind("click").bind("click", function(){
+  $('#LoginBtn').click(function(){
     $('#notLoginTop').hide();
     $('#notLoginView').hide();
 
@@ -40,24 +38,23 @@ $(document).ready(function(){
     $('#tObservation').hide();
     $('#tObText').hide();
     $('#tObDraw').hide();
-    $('#tObChildInfo').empty();
 
 
 
   }
 
 // 사이드메뉴 슬라이드
-  $("#sideMenuBtn").unbind("click").bind("click", function(){
+  $("#sideMenuBtn").click(function(){
       $("#sideMenuListDiv").toggle("slide",{direction:"left"},500,null);
   });
 
-  $("#mainContent").unbind("click").bind("click", function(){
+  $("#mainContent").click(function(){
       $("#sideMenuListDiv").hide("slide",{direction:"left"},500,null);
   });
 
 
   // 로그아웃 클릭
-  $("#logoutBtn").unbind("click").bind("click", function(){
+  $("#logoutBtn").click(function(){
 
     $('#tLoginTop').hide();
     allHide();
@@ -67,14 +64,14 @@ $(document).ready(function(){
   });
 
   // 상단 클릭 (메인으로 돌아가기)
-  $('#top').find('#imgLogo').unbind("click").bind("click", function(){
+  $('#top').find('#imgLogo').click(function(){
     allHide();
 
     $('#tLoginTop').show();
     $('#sideMenuListDiv').hide();
     $('#teacherMain').show();
   })
-  $('#top').find('#textLogo').unbind("click").bind("click", function(){
+  $('#top').find('#textLogo').click(function(){
     allHide();
 
     $('#tLoginTop').show();
@@ -83,7 +80,7 @@ $(document).ready(function(){
   })
 
   // 관찰일지 작성 도우미 클릭
-  $('#box1').unbind("click").bind("click", function(){
+  $('#box1').click(function(){
     selectChildView();
   });
 
@@ -92,7 +89,6 @@ $(document).ready(function(){
     allHide();
     $('#tLoginTop').show();
     $('#childSelectBox1').show();
-    $('#childSelect1').empty();
 
     $.ajax({
         url:"https://chesyu.run.goorm.io/MyProject/ni/childImage.php",
@@ -118,12 +114,9 @@ $(document).ready(function(){
                     $("<div></div>").addClass("imageNameDiv"+id).append(imgs).append(namesDiv).appendTo(".selectImgAndName"+id);
 
                     (function(id){
-
-                    $(".imageNameDiv"+id).unbind("click").bind("click",function(){
-                      // alert(id);
-                        tObservation(id);
+                      $(".imageNameDiv"+id).click(function(){
+                          tObservation(id);
                     });
-
                   }(id));
                 }
 
@@ -142,7 +135,6 @@ $(document).ready(function(){
 
   // 관찰일지 작성 도우미
   function tObservation(id){
-      // alert(id);
       $('#childSelectBox1').hide();
       $('#tObservation').show();
       $('#tObText').show();
@@ -153,13 +145,13 @@ $(document).ready(function(){
         },
         dataType:"jsonp",
         success:function(data){
-
             //성공
             if(data.result == "success"){
                     $('#tObChildInfo').empty();
                     var id        = data.data.id;
                     var imageName = data.data.imageName;
                     var childName = data.data.childName;
+
 
                     var imgs = $("<img />").addClass("write_ImageName").attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
                     var names = $("<p></p>").addClass("write_ChildName"+id).text(childName);
@@ -176,183 +168,136 @@ $(document).ready(function(){
             window.alert("서버 접속 오류가 발생하였습니다.");
         }
     });
+  }
 
-      // 관찰일지 텍스트 부분
-    // 텍스트 취소 버튼
-    $('#tObCancelBtn1').unbind("click").bind("click", function(){
-      selectChildView();
-    });
+  // 관찰일지 텍스트에서 그리기로 전환
+  $('#tObChangeDrawBtn').click(function(){
+    $('#tObText').hide();
+    $('#tObDraw').show();
 
-    // 텍스트 저장 버튼
-    $('#tObSaveBtn1').unbind("click").bind("click", function(){
-      alert();
-    });
+    var drawCanvas = document.getElementById('drawCanvas');
+	var drawBackup = new Array();
+	if (typeof drawCanvas.getContext == 'function') {
+		var ctx = drawCanvas.getContext('2d');
+		var isDraw = false;
+		var width = $('#width').val();;
+		var color = $('#color').val();
+		var pDraw = $('#drawCanvas').offset();
+		var currP = null;
 
-    // 관찰일지 텍스트에서 그리기로 전환
-    $('#tObChangeDrawBtn').unbind("click").bind("click", function(){
-      $('#tObText').hide();
-      $('#tObDraw').show();
+		$('#width').bind('change', function(){ width = $('#width').val(); });
+		$('#color').bind('change', function(){ color = $('#color').val(); });
 
-      var drawCanvas = document.getElementById('drawCanvas');
-  	   var drawBackup = new Array();
+		// 저장된 이미지 호출
+		if (localStorage['imgCanvas']) {
+			loadImage();
+		} else {
+			ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+		}
 
-  	    if (typeof drawCanvas.getContext == 'function') {
-      		var ctx = drawCanvas.getContext('2d');
-      		var isDraw = false;
-      		var width = $('#width').val();;
-      		var color = $('#color').val();
-      		var pDraw = $('#drawCanvas').offset();
-      		var currP = null;
+		// Event (마우스)
+		$('#drawCanvas').bind('mousedown', function(e) {
+			if (e.button===0) {
+				saveCanvas();
+				e.preventDefault();
+				ctx.beginPath();
+				isDraw = true;
+			}
+		});
+		$('#drawCanvas').bind('mousemove', function(e) {
+			var event = e.originalEvent;
+			e.preventDefault();
+			currP = { X:event.offsetX, Y:event.offsetY };
+			if(isDraw) draw_line(currP);
+		});
+		$('#drawCanvas').bind('mouseup', function(e) {
+			e.preventDefault();
+			isDraw = false;
+		});
+		$('#drawCanvas').bind('mouseleave', function(e) {
+			isDraw = false;
+		});
 
-      		$('#width').bind('change', function(){ width = $('#width').val(); });
-      		$('#color').bind('change', function(){ color = $('#color').val(); });
+		// Event (터치스크린)
+		$('#drawCanvas').bind('touchstart', function(e) {
+			saveCanvas();
+			e.preventDefault();
+			ctx.beginPath();
+		});
+		$('#drawCanvas').bind('touchmove', function(e) {
+			var event = e.originalEvent;
+			e.preventDefault();
+			currP = { X:event.touches[0].pageX-pDraw.left, Y:event.touches[0].pageY-pDraw.top };
+			draw_line(currP);
+		});
+		$('#drawCanvas').bind('touchend', function(e) {
+			e.preventDefault();
+		});
 
-      		// 저장된 이미지 호출
-      		if (localStorage['imgCanvas']) {
-      			loadImage();
-      		} else {
-      			ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
-      		}
+		// 선 그리기
+		function draw_line(p) {
+			ctx.lineWidth = width;
+			ctx.lineCap = 'round';
+			ctx.lineTo(p.X, p.Y);
+			ctx.moveTo(p.X, p.Y);
+			ctx.strokeStyle = color;
+			ctx.stroke();
+		}
 
-      		// Event (마우스)
-      		$('#drawCanvas').bind('mousedown', function(e) {
-      			if (e.button===0) {
-      				saveCanvas();
-      				e.preventDefault();
-      				ctx.beginPath();
-      				isDraw = true;
-      			}
-      		});
-      		$('#drawCanvas').bind('mousemove', function(e) {
-      			var event = e.originalEvent;
-      			e.preventDefault();
-      			currP = { X:event.offsetX, Y:event.offsetY };
-      			if(isDraw) draw_line(currP);
-      		});
-      		$('#drawCanvas').bind('mouseup', function(e) {
-      			e.preventDefault();
-      			isDraw = false;
-      		});
-      		$('#drawCanvas').bind('mouseleave', function(e) {
-      			isDraw = false;
-      		});
+		function loadImage() { // reload from localStorage
+			var img = new Image();
+			img.onload = function() {
+				ctx.drawImage(img, 0, 0);
+			}
+			img.src = localStorage.getItem('imgCanvas');
+		}
 
-      		// Event (터치스크린)
-      		$('#drawCanvas').bind('touchstart', function(e) {
-      			saveCanvas();
-      			e.preventDefault();
-      			ctx.beginPath();
-      		});
-      		$('#drawCanvas').bind('touchmove', function(e) {
-      			var event = e.originalEvent;
-      			e.preventDefault();
-      			currP = { X:event.touches[0].pageX-pDraw.left, Y:event.touches[0].pageY-pDraw.top };
-      			draw_line(currP);
-      		});
-      		$('#drawCanvas').bind('touchend', function(e) {
-      			e.preventDefault();
-      		});
+		function saveImage() { // save to localStorage
+			var canvas = document.getElementById('drawCanvas');
+			localStorage.setItem('imgCanvas', canvas.toDataURL('image/png'));
+			var img =  document.getElementById('saveImg');
+			img.src = canvas.toDataURL('image/png');
+			var tmp = $('<a>').attr('download', 'test.png').attr('href', img.src);
+			tmp[0].click();
+			tmp.remove();
+		}
 
-      		// 선 그리기
-      		function draw_line(p) {
-      			ctx.lineWidth = width;
-      			ctx.lineCap = 'round';
-      			ctx.lineTo(p.X, p.Y);
-      			ctx.moveTo(p.X, p.Y);
-      			ctx.strokeStyle = color;
-      			ctx.stroke();
-      		}
+		function clearCanvas() {
+			ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+			ctx.beginPath();
+			localStorage.removeItem('imgCanvas');
+		}
 
-          /*
+		function saveCanvas() {
+			drawBackup.push(ctx.getImageData(0, 0, drawCanvas.width, drawCanvas.height));
+		}
 
-      		function loadImage() { // reload from localStorage
-      			var img = new Image();
-      			img.onload = function() {
-      				ctx.drawImage(img, 0, 0);
-      			}
-      			img.src = localStorage.getItem('imgCanvas');
-      		}
-          */
+		function prevCanvas() {
+			ctx.putImageData(drawBackup.pop(), 0, 0);
+		}
 
-          // 이미지 저장
-      		function saveImage(id) {
-                // start
-              // alert(id);
-                var drawCanvas = document.getElementById('drawCanvas');
-                // var test = document.getElementsByClass('')
-                // "albumChildNameDiv"+id
-          	var request = $.ajax({
-          		type:'POST',
-          		data: {
-                imgUpload:drawCanvas.toDataURL('image/png'),
-                id: id
-              },
-          		// url:'../attach/canvasupload.php',
-              	url:'https://chesyu.run.goorm.io/MyProject/ni/uploadImage.php',
-                // url:'./testphp.php',
+		$('#btnPrev').click(function() {
+			prevCanvas();
+		});
 
-          		 success:function(result){
-          		 	alert("이미지 메모를 등록했습니다"+result);
-                selectChildView();
-          		 }, error:function(result){
-                 alert("error" + result);
-                 selectChildView();
-               }
+		$('#btnClea').click(function() {
+			clearCanvas();
+		});
 
-          	});
-              // end
-          }
-
-
-          // 캔버스 초기화
-      		function clearCanvas() {
-      			ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
-      			ctx.beginPath();
-      			localStorage.removeItem('imgCanvas');
-      		}
-
-          // ...?
-      		function saveCanvas() {
-      			drawBackup.push(ctx.getImageData(0, 0, drawCanvas.width, drawCanvas.height));
-      		}
-
-          //
-      		function prevCanvas() {
-      			ctx.putImageData(drawBackup.pop(), 0, 0);
-      		}
-
-      		$('#btnPrev').unbind("click").bind("click", function() {
-      			prevCanvas();
-      		});
-
-      		$('#btnClea').unbind("click").bind("click", function() {
-      			clearCanvas();
-      		});
-
-          // 그리기 취소버튼
-          $('#tObCancelBtn2').unbind("click").bind("click", function(){
-            selectChildView();
-          });
-
-          // 그리기 저장버튼
-      		$('#tObSaveBtn2').unbind("click").bind("click", function() {
-      			saveImage(id);
-      		});
-  	}
-    //////////
+		$('#btnSave').click(function() {
+			saveImage();
+		});
+	}
+  //////////
 
 
   });
 
-    // 관찰일지 그리기에서 텍스트로 전환
-    $('#tObChangeTextBtn').unbind("click").bind("click", function(){
-      $('#tObDraw').hide();
-      $('#tObText').show();
-    });
-
-  }
-
-
+  // 관찰일지 그리기에서 텍스트로 전환
+  $('#tObChangeTextBtn').click(function(){
+    $('#tObDraw').hide();
+    $('#tObText').show();
+  });
 
 
 
@@ -365,7 +310,7 @@ $(document).ready(function(){
   // 사진 업로드 클릭
 
   // 앨범 보기 클릭
-  $('#box6').unbind("click").bind("click", function(){
+  $('#box6').click(function(){
     allHide();
     $('#tLoginTop').show();
     $('#albumChildSelectBox').show();
@@ -388,7 +333,7 @@ $(document).ready(function(){
 
                     var imgs = $("<img />").addClass("albumImageName"+id).attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
                     var names = $("<p></p>").addClass("albumChildName"+id).text(childName);
-                    var namesDiv = $("<div></div>").addClass("albumChildNameDiv"+id).attr("POST", "albumChildName").append(names);
+                    var namesDiv = $("<div></div>").addClass("albumChildNameDiv"+id).append(names);
 
                     // $("<div></div>").addClass("imageNameDiv"+id).append(imgs).appendTo("#imageAndName");
                     // $("<div></div>").addClass("childNameDiv"+id).append(names).appendTo("#imageAndName");
