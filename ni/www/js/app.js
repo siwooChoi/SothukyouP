@@ -284,8 +284,7 @@ $(document).ready(function(){
 			saveImage();
 		});
 	}
-  //////////
-
+  //////////////
 
   });
 
