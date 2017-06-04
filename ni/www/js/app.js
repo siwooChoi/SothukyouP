@@ -37,6 +37,8 @@ $(document).ready(function(){
     $('#tObText').hide();
     $('#tObDraw').hide();
     $('#tDevelopCheck').hide();
+    $('#tICheck').hide();
+
     $('#textMemo').val('');
     // $('#tObChildInfo').empty();
 
@@ -643,8 +645,60 @@ $(document).ready(function(){
 
   // I-Check
   function tICheck(childID){
-    alert("id는 : " + childID);
+    allHide();
+    $('#tICheck').show();
+
+    var cnt;
+    // 선택한 원아 이름, 이미지 출력
+  $.ajax({
+      url:"https://chesyu.run.goorm.io/MyProject/ni/selectedChildImage.php",
+      data:{
+        childID: childID
+      },
+      dataType:"jsonp",
+      success:function(data){
+
+          //성공
+          if(data.result == "success"){
+                  $('#tICheck_childBox').empty();
+            //오우 쉣,, 이걸 index.html 에서 div를 만드는게 아니라 jQuery로 만들어야 될거 같다 ... 개고생 ...
+                  // $('#tICheck_childImage').empty();
+                  // $('#tICheck_childName').empty();
+                  var id        = data.data.id;
+                  var imageName = data.data.imageName;
+                  var childNum = data.data.childNum;
+                  var childName = data.data.childName;
+
+                  var imgs = $("<img />").attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
+                  var names = $("<p></p>").text(childName);
+                  var childBox = $('#tICheck_childBox');
+                  var imgsDiv = $("#tICheck_childImage").append(imgs);
+                  var namesDiv = $("#tICheck_childName").append(names);
+
+
+
+          }
+          //오류
+          else {
+              window.alert("오류가 발생하였습니다.");
+          }
+      }, error: function(){
+          window.alert("서버 접속 오류가 발생하였습니다.");
+      }
+  });
+
+
+
+
+    // 뒤로 돌아가기 버튼
+    $('#backTurnBtn').unbind("click").bind("click", function(){
+      var whatIsBox = "box3";
+      selectChildView(whatIsBox);
+    });
+
   }
+
+
   // 원아지킴이 클릭
 
   // 사진 업로드 클릭

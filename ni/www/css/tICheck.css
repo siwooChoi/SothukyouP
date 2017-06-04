@@ -1,0 +1,125 @@
+ /*탑메뉴 아래의 전체*/
+#tICheck{
+  position: absolute;
+  top:10%;
+  width: 100%;
+  height: 90%;
+}
+
+#tICheck > div{
+  display: inline-block;
+}
+
+/*버튼3개를 담고있는 div*/
+#modeBtns{
+  position: relative;
+  top:5%;
+  width: 100%;
+  height: 10%;
+}
+
+/*각 버튼 3개 크기 지정*/
+#modeBtns > div{
+  position: relative;
+  width: 20%;
+  height: 100%;
+}
+
+  /*알림내용 버튼*/
+#tICheck_Notification_btn{
+  position: relative;
+  display: inline-block;
+  left: 14%;
+  background-color: black;
+}
+
+  /*발달사항 버튼*/
+#tICheck_DevelopGraph_btn{
+  position: relative;
+  display: inline-block;
+  left:19%;
+  background-color: blue;
+}
+
+  /*특이사항 버튼*/
+#tICheck_Signficant_btn{
+  position: relative;
+  display: inline-block;
+  left:24%;
+  background-color: red;
+}
+
+  /*원아 사진,이름 담고있는 div*/
+#tICheck_childBox{
+  position: relative;
+  /*top:15%;*/
+  left:3%;
+  width: 30%;
+  height: 30%;
+  /*background-color: gray;*/
+}
+
+  /*원아 사진 담고있는 div*/
+#tICheck_childImage{
+  position: relative;
+  width: 100%;
+  height:75%;
+  background-color: blue;
+}
+
+  /*원아 사진 img*/
+#tICheck_childImage > img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*border: 1px black solid;*/
+}
+
+  /*원아 이름 담고있는 div*/
+#tICheck_childName{
+  position: relative;
+  top:5%;
+  width: 100%;
+  height:20%;
+  background-color: red;
+}
+
+#tICheck_childName > p {
+  position: relative;
+}
+
+  /*알림내용 div*/
+#notification{
+  position: relative;
+  top:7%;
+  left: 4%;
+  width: 62%;
+  height: 50%;
+  background-color: gray;
+}
+
+  /*뒤로 돌아가기 버튼 div*/
+#backTurnBtn{
+  position: relative;
+  left: 5%;
+  width:25%;
+  height:15%;
+  background-color: #DCE6F2;
+}
+
+  /*알림내용 댓글*/
+#notification_comment{
+  position: relative;
+  top:10%;
+  left:9%;
+  width:62%;
+  height:25%;
+  background-color: gray;
+}
+
+  /*뒤로 돌아가기 버튼 안 글씨*/
+#backTurnBtn > p{
+  position: relative;
+  text-align: center;
+  font-size: 120%;
+}
