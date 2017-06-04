@@ -38,6 +38,7 @@ $(document).ready(function(){
     $('#tObDraw').hide();
     $('#tDevelopCheck').hide();
     $('#tICheck').hide();
+    $('#modeBtns').hide();
 
     $('#textMemo').val('');
     // $('#tObChildInfo').empty();
@@ -647,6 +648,7 @@ $(document).ready(function(){
   function tICheck(childID){
     allHide();
     $('#tICheck').show();
+    $('#modeBtns').show();
 
     var cnt;
     // 선택한 원아 이름, 이미지 출력
@@ -660,10 +662,8 @@ $(document).ready(function(){
 
           //성공
           if(data.result == "success"){
-                  $('#tICheck_childBox').empty();
-            //오우 쉣,, 이걸 index.html 에서 div를 만드는게 아니라 jQuery로 만들어야 될거 같다 ... 개고생 ...
-                  // $('#tICheck_childImage').empty();
-                  // $('#tICheck_childName').empty();
+                  $('#tICheck_childBox_div').empty();
+
                   var id        = data.data.id;
                   var imageName = data.data.imageName;
                   var childNum = data.data.childNum;
@@ -671,12 +671,12 @@ $(document).ready(function(){
 
                   var imgs = $("<img />").attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
                   var names = $("<p></p>").text(childName);
-                  var childBox = $('#tICheck_childBox');
-                  var imgsDiv = $("#tICheck_childImage").append(imgs);
-                  var namesDiv = $("#tICheck_childName").append(names);
 
-
-
+                  $("<div></div>").addClass("tICheck_childBox").appendTo("#tICheck_childBox_div");
+                  var imgsDiv = $("<div></div>").addClass("tICheck_imgsDiv").appendTo(".tICheck_childBox");
+                  var namesDiv = $("<div></div>").addClass("tICheck_namesDiv").appendTo(".tICheck_childBox");
+                  imgsDiv.append(imgs);
+                  namesDiv.append(names);
           }
           //오류
           else {
@@ -688,6 +688,10 @@ $(document).ready(function(){
   });
 
 
+    //////// ajax로 알림장내용 읽어와야됨.
+      $("<div></div>").addClass("notification_div").appendTo("#modeContents");
+
+    //
 
 
     // 뒤로 돌아가기 버튼
