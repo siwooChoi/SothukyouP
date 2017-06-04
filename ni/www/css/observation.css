@@ -2,6 +2,7 @@
 #tObservation{
   position: absolute;
   top:10%;
+  height: 70%;
 }
 
   /*사진이름 틀*/
@@ -99,13 +100,16 @@
   border: 2px solid black;
 }
 
+
   /*그리기 캔버스*/
 #drawCanvas{
   position: relative;
-  margin-top: 5%;
-  /*left:4%;*/
-  width:90%;
-  border: 2px black solid;
+  /*margin-top: 3%;*/
+  left:3%;
+  /*width:100%;*/
+  height: 80%;
+  border-top : 2px black solid;
+  border-bottom : 2px black solid;
   /*background-color: #E4EFFE;*/
 }
 
@@ -119,6 +123,11 @@
   border: 2px black solid;
   text-align: center;
   background-color: #BBBBBB;
+}
+
+#tObDraw{
+  width: 95%;
+  height: 100%;
 }
 
 /*저장 버튼*/

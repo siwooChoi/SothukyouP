@@ -37,6 +37,7 @@ $(document).ready(function(){
     $('#tObText').hide();
     $('#tObDraw').hide();
     $('#tDevelopCheck').hide();
+    $('#textMemo').val('');
     // $('#tObChildInfo').empty();
 
   }
@@ -98,6 +99,7 @@ $(document).ready(function(){
                 for(var i = 0; i < cnt ; i++){
                     var id        = data.data[i].id;
                     var imageName = data.data[i].imageName;
+                    var childNum  = data.data[i].childNum;
                     var childName = data.data[i].childName;
                     var imageComment = data.data[i].imageComment;
 
@@ -117,10 +119,10 @@ $(document).ready(function(){
                         ///
                           switch (box) {
                             case "box1":
-                              tObservation(id, childName);
+                              tObservation(id, childNum);
                               break;
                             case "box2":
-                              developCheck(id, childName);
+                              developCheck(id, childNum);
                               break;
                             case "box3":
                               alert("i-check");
@@ -142,7 +144,7 @@ $(document).ready(function(){
 
                     });
 
-                  }(id, childName));
+                  }(id, childNum));
                 }
 
                 if(cnt == 0)
@@ -205,7 +207,7 @@ $(document).ready(function(){
   });
 
   // 관찰일지 작성 도우미
-  function tObservation(id, childName){
+  function tObservation(id, childNum){
       // alert(id);
       $('#childSelectBox1').hide();
       $('#tObservation').show();
@@ -217,7 +219,7 @@ $(document).ready(function(){
         url:"https://chesyu.run.goorm.io/MyProject/ni/selectedChildImage.php",
         data:{
           id: id,
-          childName: childName
+          childNum: childNum
         },
         dataType:"jsonp",
         success:function(data){
@@ -227,6 +229,7 @@ $(document).ready(function(){
                     $('#tObChildInfo').empty();
                     var id        = data.data.id;
                     var imageName = data.data.imageName;
+                    var childNum = data.data.childNum;
                     var childName = data.data.childName;
 
                     var imgs = $("<img />").addClass("write_ImageName").attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
@@ -246,31 +249,7 @@ $(document).ready(function(){
     });
 
 
-    // 텍스트 저장
-    function saveText(id, childName){
-      var textMemo = $('#textMemo').val();
 
-      var request = $.ajax({
-        type:'POST',
-        data: {
-          id: id,
-          textMemo : textMemo,
-          childName : childName
-        },
-          url:'https://chesyu.run.goorm.io/MyProject/ni/uploadText.php',
-
-         success:function(result){
-          alert("메모를 등록했습니다"+result);
-          selectChildView();
-         }, error:function(result){
-           alert("error" + result);
-           selectChildView();
-         }
-
-      });
-
-
-    }
 
       // 관찰일지 텍스트 부분
     // 텍스트 취소 버튼
@@ -280,8 +259,36 @@ $(document).ready(function(){
 
     // 텍스트 저장 버튼
     $('#tObSaveBtn1').unbind("click").bind("click", function(){
-      saveText(id, childName);
+      saveText(id, childNum);
     });
+
+    // 텍스트 저장
+    function saveText(id, childNum){
+      var textMemo = $('#textMemo').val();
+
+      var request = $.ajax({
+        type:'POST',
+        data: {
+          id: id,
+          textMemo : textMemo,
+          childNum : childNum
+        },
+          url:'https://chesyu.run.goorm.io/MyProject/ni/uploadText.php',
+
+         success:function(result){
+          alert("메모를 등록했습니다"+result);
+          $('#textMemo').val('');
+
+          selectChildView("box1");
+         }, error:function(result){
+           alert("error" + result);
+           selectChildView("box1");
+         }
+
+      });
+
+
+    }
 
     // 관찰일지 그리기에서 텍스트로 전환
     $('#tObChangeTextBtn').unbind("click").bind("click", function(){
@@ -292,8 +299,9 @@ $(document).ready(function(){
     // 관찰일지 텍스트에서 그리기로 전환
     $('#tObChangeDrawBtn').unbind("click").bind("click", function(){
       $('#tObText').hide();
+      $('#textMemo').val('');
       $('#tObDraw').show();
-
+      
       var drawCanvas = document.getElementById('drawCanvas');
   	   var drawBackup = new Array();
 
@@ -324,6 +332,9 @@ $(document).ready(function(){
       				isDraw = true;
       			}
       		});
+
+
+
       		$('#drawCanvas').bind('mousemove', function(e) {
       			var event = e.originalEvent;
       			e.preventDefault();
@@ -376,7 +387,7 @@ $(document).ready(function(){
           */
 
           // 이미지 저장
-      		function saveImage(id, childName) {
+      		function saveImage(id, childNum) {
                 // start
               // alert(id);
                 var drawCanvas = document.getElementById('drawCanvas');
@@ -387,7 +398,7 @@ $(document).ready(function(){
           		data: {
                 imgUpload:drawCanvas.toDataURL('image/png'),
                 id: id,
-                childName : childName
+                childName : childNum
               },
           		// url:'../attach/canvasupload.php',
 
@@ -397,12 +408,11 @@ $(document).ready(function(){
 
           		 success:function(result){
           		 	alert("이미지 메모를 등록했습니다"+result);
-                selectChildView();
+                selectChildView("box1");
           		 }, error:function(result){
                  alert("error" + result);
-                 selectChildView();
+                 selectChildView("box1");
                }
-
           	});
               // end
           }
@@ -440,7 +450,7 @@ $(document).ready(function(){
 
           // 그리기 저장버튼
       		$('#tObSaveBtn2').unbind("click").bind("click", function() {
-      			saveImage(id, childName);
+      			saveImage(id, childNum);
       		});
     	}
       //////////
@@ -454,16 +464,16 @@ $(document).ready(function(){
   });
 
   // 발달 행동 체크
-  function developCheck(id, childName){
+  function developCheck(id, childNum){
     $('#childSelectBox1').hide();
     $('#tDevelopCheck').show();
-
+    var cnt;
     // 선택한 원아 이름, 이미지 출력
   $.ajax({
       url:"https://chesyu.run.goorm.io/MyProject/ni/selectedChildImage.php",
       data:{
         id: id,
-        childName: childName
+        childNum: childNum
       },
       dataType:"jsonp",
       success:function(data){
@@ -473,6 +483,7 @@ $(document).ready(function(){
                   $('#tDevelopChildInfo').empty();
                   var id        = data.data.id;
                   var imageName = data.data.imageName;
+                  var childNum = data.data.childNum;
                   var childName = data.data.childName;
 
                   var imgs = $("<img />").addClass("develop_ImageName").attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
@@ -481,6 +492,10 @@ $(document).ready(function(){
 
                   $("#tDevelopChildInfo").append("<div></div>").addClass('develop_ImgAndName'+id);
                   $("<div></div>").addClass("develop_ImageNameDiv"+id).append(imgs).append(namesDiv).appendTo(".develop_ImgAndName"+id);
+                  // 발달 사항 체크 저장버튼 클릭
+                  $('#tDevelopCheckSaveBtn').unbind("click").bind("click", function(){
+                    tDevelopCheckSave(childNum);
+                  });
           }
           //오류
           else {
@@ -492,24 +507,23 @@ $(document).ready(function(){
   });
 
 
-
-
     // 항목 표시
   $.ajax({
-      url:"https://chesyu.run.goorm.io/MyProject/ni/developCheck.php",
+      url:"https://chesyu.run.goorm.io/MyProject/ni/developCheckList.php",
       data:{
-        childName: childName
+        childNum: childNum
       },
       dataType:"jsonp",
       success:function(data){
           if(data.result == "success"){
-            var cnt = data.data.length;
+            cnt = data.data.length;
 
             $('#tDevelopCheckDiv').empty();
 
 
         for(var i = 0; i < cnt ; i++){
             var id        = data.data[i].id;
+            var childNum = data.data[i].childNum;
             var childName = data.data[i].childName;
             var developCheckName = data.data[i].developCheckName;
             var developCheckValue1 = data.data[i].developCheckValue1;
@@ -519,36 +533,20 @@ $(document).ready(function(){
             var developCheckValue5 = data.data[i].developCheckValue5;
             var regist_day		  = data.data[i].regist_day;
 
-
-////////////////////대안 1/////////
-            // 제목
-            // var tDevelopCheckNameDiv = $("<div></div>").addClass("tDevelopCheckNameDiv"+id);
-            // var tDevelopCheckNameP = $("<p></p>").addClass("tDevelopCheckNameP"+id).text(developCheckName).appendTo(tDevelopCheckNameDiv);
-            //
-            // // 항목값
-            // var tDevelopCheckValueDiv = $("<div></div>").addClass("tDevelopCheckValueDiv"+id);
-            // var tDevelopCheckValue1 = $("<input>"+developCheckValue1+"</input>").addClass("tDevelopCheckValue1"+id).attr("type", "radio").appendTo(tDevelopCheckValueDiv);
-            // var tDevelopCheckValue2 = $("<input>"+developCheckValue2+"</input>").addClass("tDevelopCheckValue2"+id).attr("type", "radio").appendTo(tDevelopCheckValueDiv);
-            // var tDevelopCheckValue3 = $("<input>"+developCheckValue3+"</input>").addClass("tDevelopCheckValue3"+id).attr("type", "radio").appendTo(tDevelopCheckValueDiv);
-            // var tDevelopCheckValue4 = $("<input>"+developCheckValue4+"</input>").addClass("tDevelopCheckValue4"+id).attr("type", "radio").appendTo(tDevelopCheckValueDiv);
-            // var tDevelopCheckValue5 = $("<input>"+developCheckValue5+"</input>").addClass("tDevelopCheckValue5"+id).attr("type", "radio").appendTo(tDevelopCheckValueDiv);
-            //
-            // $('#tDevelopCheckDiv').append(tDevelopCheckNameDiv);
-            // $('#tDevelopCheckDiv').append(tDevelopCheckValueDiv);
-////////////////////////////////////
-
-///////////////////대안 2///////////////
             var tDevelopCheckSet = $("<div></div>").addClass("tDevelopCheckSet"+id).appendTo('#tDevelopCheckDiv');
             var tDevelopCheckNameDiv = $("<div></div>").addClass("tDevelopCheckNameDiv"+id).appendTo(tDevelopCheckSet);
             var tDevelopCheckNameP = $("<p></p>").addClass("tDevelopCheckNameP"+id).text(developCheckName).appendTo(tDevelopCheckNameDiv);
 
             var tDevelopCheckValueTable = $("<table></table>").appendTo(tDevelopCheckSet);
-            var tDevelopCheckValueTr = $("<tr></tr>").appendTo(tDevelopCheckValueTable);
+            var tDevelopCheckValueTr = $("<tr></tr>").addClass("tr"+id).appendTo(tDevelopCheckValueTable);
+
             var tDevelopCheckValueTd1 = $("<td></td>").appendTo(tDevelopCheckValueTr);
             var tDevelopCheckValueTd2 = $("<td></td>").appendTo(tDevelopCheckValueTr);
             var tDevelopCheckValueTd3 = $("<td></td>").appendTo(tDevelopCheckValueTr);
             var tDevelopCheckValueTd4 = $("<td></td>").appendTo(tDevelopCheckValueTr);
             var tDevelopCheckValueTd5 = $("<td></td>").appendTo(tDevelopCheckValueTr);
+
+
 
             var tDevelopCheckValuelabel1 = $("<label></label>").appendTo(tDevelopCheckValueTd1);
             var tDevelopCheckValuelabel2 = $("<label></label>").appendTo(tDevelopCheckValueTd2);
@@ -556,62 +554,85 @@ $(document).ready(function(){
             var tDevelopCheckValuelabel4 = $("<label></label>").appendTo(tDevelopCheckValueTd4);
             var tDevelopCheckValuelabel5 = $("<label></label>").appendTo(tDevelopCheckValueTd5);
 
+            var tDevelopCheckValue1 = $("<input> 1</input>").addClass("tDevelopCheckValue1"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel1);
+            var tDevelopCheckValue2 = $("<input> 2</input>").addClass("tDevelopCheckValue2"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel2);
+            var tDevelopCheckValue3 = $("<input> 3</input>").addClass("tDevelopCheckValue3"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel3);
+            var tDevelopCheckValue4 = $("<input> 4</input>").addClass("tDevelopCheckValue4"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel4);
+            var tDevelopCheckValue5 = $("<input> 5</input>").addClass("tDevelopCheckValue5"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel5);
 
-            var tDevelopCheckValue1 = $("<input>"+developCheckValue1+"</input>").addClass("tDevelopCheckValue1"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel1);
-            var tDevelopCheckValue2 = $("<input>"+developCheckValue2+"</input>").addClass("tDevelopCheckValue2"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel2);
-            var tDevelopCheckValue3 = $("<input>"+developCheckValue3+"</input>").addClass("tDevelopCheckValue3"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel3);
-            var tDevelopCheckValue4 = $("<input>"+developCheckValue4+"</input>").addClass("tDevelopCheckValue4"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel4);
-            var tDevelopCheckValue5 = $("<input>"+developCheckValue5+"</input>").addClass("tDevelopCheckValue5"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel5);
-
-///////////////////////////////////////
-
-///////////////////// 대안 3 ///////////////
-            // 제목
-            // var tDevelopCheckNameDiv = $("<div></div>").addClass("tDevelopCheckNameDiv"+id).appendTo('#tDevelopCheckNameDivMain');
-            // var tDevelopCheckNameP = $("<p></p>").addClass("tDevelopCheckNameP"+id).text(developCheckName).appendTo(tDevelopCheckNameDiv);
-            //
-            // // 항목값
-            // var tDevelopCheckValueSpan1 = $("<span></span>").addClass("tDevelopCheckValueSpan1"+id).appendTo('#tDevelopCheckValueDivMain');
-            // var tDevelopCheckValueSpan2 = $("<span></span>").addClass("tDevelopCheckValueSpan2"+id).appendTo('#tDevelopCheckValueDivMain');
-            // var tDevelopCheckValueSpan3 = $("<span></span>").addClass("tDevelopCheckValueSpan3"+id).appendTo('#tDevelopCheckValueDivMain');
-            // var tDevelopCheckValueSpan4 = $("<span></span>").addClass("tDevelopCheckValueSpan4"+id).appendTo('#tDevelopCheckValueDivMain');
-            // var tDevelopCheckValueSpan5 = $("<span></span>").addClass("tDevelopCheckValueSpan5"+id).appendTo('#tDevelopCheckValueDivMain');
-            //
-            // var tDevelopCheckValue1 = $("<input>"+developCheckValue1+"</input>").addClass("tDevelopCheckValue1"+id).attr("type", "radio").appendTo(tDevelopCheckValueSpan1);
-            // var tDevelopCheckValue2 = $("<input>"+developCheckValue2+"</input>").addClass("tDevelopCheckValue2"+id).attr("type", "radio").appendTo(tDevelopCheckValueSpan2);
-            // var tDevelopCheckValue3 = $("<input>"+developCheckValue3+"</input>").addClass("tDevelopCheckValue3"+id).attr("type", "radio").appendTo(tDevelopCheckValueSpan3);
-            // var tDevelopCheckValue4 = $("<input>"+developCheckValue4+"</input>").addClass("tDevelopCheckValue4"+id).attr("type", "radio").appendTo(tDevelopCheckValueSpan4);
-            // var tDevelopCheckValue5 = $("<input>"+developCheckValue5+"</input>").addClass("tDevelopCheckValue5"+id).attr("type", "radio").appendTo(tDevelopCheckValueSpan5);
-
-
-
-
-///////////////////////////////////////
-
-
-
-
-
-            // (function(id, childName){
-            //   $(".imageNameDiv"+id).unbind("click").bind("click",function(){
-            //     // alert(id);
-            //
-            //   });
-            // }(id, childName));
-
+                  // 값도 변경할 수 있도록 데이터베이스를 설정할 경우.
+            // var tDevelopCheckValue1 = $("<input>"+developCheckValue1+"</input>").addClass("tDevelopCheckValue1"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel1);
+            // var tDevelopCheckValue2 = $("<input>"+developCheckValue2+"</input>").addClass("tDevelopCheckValue2"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel2);
+            // var tDevelopCheckValue3 = $("<input>"+developCheckValue3+"</input>").addClass("tDevelopCheckValue3"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel3);
+            // var tDevelopCheckValue4 = $("<input>"+developCheckValue4+"</input>").addClass("tDevelopCheckValue4"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel4);
+            // var tDevelopCheckValue5 = $("<input>"+developCheckValue5+"</input>").addClass("tDevelopCheckValue5"+id).attr("type", "radio").attr("name", "value"+id).appendTo(tDevelopCheckValuelabel5);
 
           }
         }
-
       } // success 끝나는 지점
     });
 
-    // 발달 사항 체크 취소
+    // // 발달 사항 체크 저장버튼 클릭
+    // $('#tDevelopCheckSaveBtn').unbind("click").bind("click", function(){
+    //   tDevelopCheckSave(childNum);
+    // });
+
+    // 발달 사항 체크 취소버튼 클릭
     $('#tDevelopCheckCancelBtn').unbind("click").bind("click", function(){
       selectChildView("box2");
     });
 
+
+    // 발달 사항 체크 저장
+    function tDevelopCheckSave(childNum){
+      var checkName  = new Array();
+      var checkValues = new Array();
+
+
+      // radio버튼 중 선택한 항목의 값만 뽑아오기
+      for(var id = 1; id < cnt+1; id++){
+
+        checkName.push($('.tDevelopCheckNameP'+id).text());
+
+        // 선택하지 않았다면 Default값
+        if($('.tr'+id).find('input'+':checked').parent().text() == ""){
+          checkValues.push("3");
+        } else{
+          checkValues.push($('.tr'+id).find('input'+':checked').parent().text());
+        }
+      }
+
+    // for(var i=0; i < checkValues.length; i++){
+    //   alert("배열에 들어간 값은 : " + checkValues[i]);
+    // }
+
+      $.ajax({
+          url:"https://chesyu.run.goorm.io/MyProject/ni/developCheck.php",
+          data:{
+            childNum : childNum,
+            checkName : checkName,
+            checkValues : checkValues,
+            row : cnt
+          },
+          dataType:"jsonp",
+          success:function(data){
+              if(data.result == "success"){
+                alert("체크사항을 저장하였습니다.");
+                selectChildView("box2");
+              } else{
+                alert(data.result);
+                selectChildView("box2");
+              }
+          }
+
+      })// ajax끝부분
+
+
+    }// 발달사항체크저장 끝부분
+
   }
+
+
 
 
   // I-Check 클릭
@@ -640,6 +661,7 @@ $(document).ready(function(){
                 for(var i = 0; i < cnt ; i++){
                     var id        = data.data[i].id;
                     var imageName = data.data[i].imageName;
+                    var childNum = data.data[i].childNum;
                     var childName = data.data[i].childName;
 
                     var imgs = $("<img />").addClass("albumImageName"+id).attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
