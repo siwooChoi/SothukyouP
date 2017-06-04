@@ -97,35 +97,34 @@ $(document).ready(function(){
                 // testClick(data);
 
                 for(var i = 0; i < cnt ; i++){
-                    var id        = data.data[i].id;
+                    var childID        = data.data[i].id;
                     var imageName = data.data[i].imageName;
-                    var childNum  = data.data[i].childNum;
                     var childName = data.data[i].childName;
                     var imageComment = data.data[i].imageComment;
 
-                    var imgs = $("<img />").addClass("imageName"+id).attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
-                    var names = $("<p></p>").addClass("childName"+id).text(childName);
-                    var namesDiv = $("<div></div>").addClass("childNameDiv"+id).append(names);
+                    var imgs = $("<img />").addClass("imageName"+childID).attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
+                    var names = $("<p></p>").addClass("childName"+childID).text(childName);
+                    var namesDiv = $("<div></div>").addClass("childNameDiv"+childID).append(names);
 
-                    $("#childSelect1").append("<div></div>").addClass('selectImgAndName'+id);
-                    $("<div></div>").addClass("imageNameDiv"+id).append(imgs).append(namesDiv).appendTo(".selectImgAndName"+id);
+                    $("#childSelect1").append("<div></div>").addClass('selectImgAndName'+childID);
+                    $("<div></div>").addClass("imageNameDiv"+childID).append(imgs).append(namesDiv).appendTo(".selectImgAndName"+childID);
 
-                    (function(id, childName){
+                    (function(childID){
 
-                    $(".imageNameDiv"+id).unbind("click").bind("click",function(){
+                    $(".imageNameDiv"+childID).unbind("click").bind("click",function(){
                       // alert(id);
                         // tObservation(id, childName);
 
                         ///
                           switch (box) {
                             case "box1":
-                              tObservation(id, childNum);
+                              tObservation(childID);
                               break;
                             case "box2":
-                              developCheck(id, childNum);
+                              developCheck(childID);
                               break;
                             case "box3":
-                              alert("i-check");
+                              tICheck(childID);
                               break;
                             case "box4":
                               alert('원아지킴이...');
@@ -144,7 +143,7 @@ $(document).ready(function(){
 
                     });
 
-                  }(id, childNum));
+                  }(childID));
                 }
 
                 if(cnt == 0)
@@ -207,7 +206,7 @@ $(document).ready(function(){
   });
 
   // 관찰일지 작성 도우미
-  function tObservation(id, childNum){
+  function tObservation(childID){
       // alert(id);
       $('#childSelectBox1').hide();
       $('#tObservation').show();
@@ -218,8 +217,7 @@ $(document).ready(function(){
     $.ajax({
         url:"https://chesyu.run.goorm.io/MyProject/ni/selectedChildImage.php",
         data:{
-          id: id,
-          childNum: childNum
+          childID: childID
         },
         dataType:"jsonp",
         success:function(data){
@@ -227,17 +225,17 @@ $(document).ready(function(){
             //성공
             if(data.result == "success"){
                     $('#tObChildInfo').empty();
-                    var id        = data.data.id;
+                    var childID   = data.data.id;
                     var imageName = data.data.imageName;
-                    var childNum = data.data.childNum;
+                    var childNum  = data.data.childNum;
                     var childName = data.data.childName;
 
                     var imgs = $("<img />").addClass("write_ImageName").attr("src","https://chesyu.run.goorm.io/MyProject/ni/image/"+imageName);
-                    var names = $("<p></p>").addClass("write_ChildName"+id).text(childName);
-                    var namesDiv = $("<div></div>").addClass("write_ChildNameDiv"+id).append(names);
+                    var names = $("<p></p>").addClass("write_ChildName"+childID).text(childName);
+                    var namesDiv = $("<div></div>").addClass("write_ChildNameDiv"+childID).append(names);
 
-                    $("#tObChildInfo").append("<div></div>").addClass('write_ImgAndName'+id);
-                    $("<div></div>").addClass("write_ImageNameDiv"+id).append(imgs).append(namesDiv).appendTo(".write_ImgAndName"+id);
+                    $("#tObChildInfo").append("<div></div>").addClass('write_ImgAndName'+childID);
+                    $("<div></div>").addClass("write_ImageNameDiv"+childID).append(imgs).append(namesDiv).appendTo(".write_ImgAndName"+childID);
             }
             //오류
             else {
@@ -259,17 +257,17 @@ $(document).ready(function(){
 
     // 텍스트 저장 버튼
     $('#tObSaveBtn1').unbind("click").bind("click", function(){
-      saveText(id, childNum);
+      saveText(childID);
     });
 
     // 텍스트 저장
-    function saveText(id, childNum){
+    function saveText(childID, childNum){
       var textMemo = $('#textMemo').val();
 
       var request = $.ajax({
         type:'POST',
         data: {
-          id: id,
+          childID: childID,
           textMemo : textMemo,
           childNum : childNum
         },
@@ -301,9 +299,13 @@ $(document).ready(function(){
       $('#tObText').hide();
       $('#textMemo').val('');
       $('#tObDraw').show();
-      
+
       var drawCanvas = document.getElementById('drawCanvas');
   	   var drawBackup = new Array();
+
+       drawCanvas.width = window.innerWidth;
+       drawCanvas.height = window.innerHeight/2;
+
 
   	    if (typeof drawCanvas.getContext == 'function') {
       		var ctx = drawCanvas.getContext('2d');
@@ -387,7 +389,7 @@ $(document).ready(function(){
           */
 
           // 이미지 저장
-      		function saveImage(id, childNum) {
+      		function saveImage(childID) {
                 // start
               // alert(id);
                 var drawCanvas = document.getElementById('drawCanvas');
@@ -397,8 +399,7 @@ $(document).ready(function(){
           		type:'POST',
           		data: {
                 imgUpload:drawCanvas.toDataURL('image/png'),
-                id: id,
-                childName : childNum
+                childID : childID
               },
           		// url:'../attach/canvasupload.php',
 
@@ -450,7 +451,7 @@ $(document).ready(function(){
 
           // 그리기 저장버튼
       		$('#tObSaveBtn2').unbind("click").bind("click", function() {
-      			saveImage(id, childNum);
+      			saveImage(childID);
       		});
     	}
       //////////
@@ -464,7 +465,7 @@ $(document).ready(function(){
   });
 
   // 발달 행동 체크
-  function developCheck(id, childNum){
+  function developCheck(childID){
     $('#childSelectBox1').hide();
     $('#tDevelopCheck').show();
     var cnt;
@@ -472,8 +473,7 @@ $(document).ready(function(){
   $.ajax({
       url:"https://chesyu.run.goorm.io/MyProject/ni/selectedChildImage.php",
       data:{
-        id: id,
-        childNum: childNum
+        childID: childID
       },
       dataType:"jsonp",
       success:function(data){
@@ -494,7 +494,7 @@ $(document).ready(function(){
                   $("<div></div>").addClass("develop_ImageNameDiv"+id).append(imgs).append(namesDiv).appendTo(".develop_ImgAndName"+id);
                   // 발달 사항 체크 저장버튼 클릭
                   $('#tDevelopCheckSaveBtn').unbind("click").bind("click", function(){
-                    tDevelopCheckSave(childNum);
+                    tDevelopCheckSave(childID);
                   });
           }
           //오류
@@ -511,7 +511,7 @@ $(document).ready(function(){
   $.ajax({
       url:"https://chesyu.run.goorm.io/MyProject/ni/developCheckList.php",
       data:{
-        childNum: childNum
+        childID: childID
       },
       dataType:"jsonp",
       success:function(data){
@@ -636,7 +636,15 @@ $(document).ready(function(){
 
 
   // I-Check 클릭
+  $('#box3').unbind("click").bind("click", function(){
+    var whatIsBox = "box3";
+    selectChildView(whatIsBox);
+  });
 
+  // I-Check
+  function tICheck(childID){
+    alert("id는 : " + childID);
+  }
   // 원아지킴이 클릭
 
   // 사진 업로드 클릭
