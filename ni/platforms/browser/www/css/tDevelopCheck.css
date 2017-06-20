@@ -1,0 +1,164 @@
+
+
+body{
+  height: 100%;
+}
+
+#tDevelopCheck{
+  position: absolute;
+  top:10%;
+  width:100%;
+  height: 90%;
+  background-color: #FFF1D3;
+}
+
+/* ㅡㅡㅡㅡㅡ    선택원아 정보 관련  ㅡㅡㅡㅡㅡㅡ */
+  /*사진이름 틀*/
+#tDevelopChildInfo{
+  position: relative;
+  left:5%;
+  width: 90%;
+  /*border: 2px red solid;*/
+  top: 3%;
+  background-color: #FFB888;
+}
+
+  /*사진*/
+#tDevelopChildInfo > div > img{
+  position: relative;
+  margin-top: 1%;
+  left:2%;
+  width:30%;
+  border: 2px black solid;
+  border-radius: 100%;
+}
+
+  /*이름 틀*/
+#tDevelopChildInfo > div > div{
+  position: absolute;
+  display: inline-block;
+
+  top:10%;
+  left:35%;
+  width: 62%;
+  height: 80%;
+  /*float: right;*/
+  /*margin-top: 3%;
+  margin-right: 7%;*/
+  /*padding: 7%;*/
+  background-color: #FF7012;
+  border-radius: 10%;
+}
+
+
+  /*이름 글씨*/
+#tDevelopChildInfo > div > div > p{
+  position: relative;
+  top:33%;
+  text-align: center;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡ  구간 나누기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
+    /* ㅡㅡㅡㅡㅡ    항목 관련  ㅡㅡㅡㅡㅡㅡ */
+
+
+
+  /*항목 전체적인 틀*/
+#tDevelopCheckDiv{
+  position: relative;
+  top:5%;
+  width: 90%;
+  left: 2%;
+  height: 60%;
+  padding: 2%;
+  border: 1px solid black;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
+}
+
+#tDevelopCheckDiv::-webkit-scrollbar{
+  display: none;
+}
+
+  /*항목제목, 값 셋트*/
+#tDevelopCheckDiv > div {
+  position: relative;
+  margin-bottom: 20%;
+}
+
+  /*항목 제목 틀*/
+#tDevelopCheckDiv > div > div {
+  position: relative;
+  border: 1px solid red;
+}
+
+  /*항목 제목 틀 안에 있는 텍스트 항목제목*/
+#tDevelopCheckDiv > div > div > p{
+  position: relative;
+  text-align: center;
+}
+
+  /*항목 값 테이블*/
+#tDevelopCheckDiv > div > table{
+  position: relative;
+  left: 5%;
+  width:95%;
+}
+
+  /*항목 값 Tr*/
+#tDevelopCheckDiv > div > table > tr{
+  position: relative;
+  width:100%;
+}
+
+
+  /*항목 값 td*/
+#tDevelopCheckDiv > div > table > tr > label > td{
+  position: relative;
+  width:20%;
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡ  구간 나누기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
+    /* ㅡㅡㅡㅡㅡ    버튼 관련  ㅡㅡㅡㅡㅡㅡ */
+
+
+#tDevelopCheckCancelSave{
+  position: relative;
+  width: 90%;
+  left:5%;
+  margin-top:15%;
+  /*border: 1px solid black;*/
+}
+
+
+
+/*취소버튼*/
+#tDevelopCheckCancelBtn{
+  position: relative;
+  /*display: inline-block;
+  margin-top:15%;*/
+  width: 80%;
+  border: 2px black solid;
+  /*text-align: center;*/
+  background-color: #BBBBBB;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*저장 버튼*/
+#tDevelopCheckSaveBtn{
+  position: relative;
+  width: 80%;
+  border: 2px black solid;
+  /*text-align: center;*/
+  background-color: #BBBBBB;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*취소,저장 버튼 글씨*/
+  #tDevelopCheckCancelBtn > p, #tDevelopCheckSaveBtn > p{
+  text-align: center;
+  font-size: 120%;
+}

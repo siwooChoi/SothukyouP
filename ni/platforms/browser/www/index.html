@@ -1,18 +1,638 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Gallery App</title>
+      <title>Nit</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, user-scalable=no"/ >
-      <link rel="stylesheet" href="./css/app.css">
-      <script src="../platforms/browser/platform_www/cordova.js"></script>
-      <script src="../platforms/browser/platform_www/cordova_plugins.js"></script>
+      <link rel="stylesheet" href="./css/jquery-ui.css">
+      <link rel="stylesheet" href="./css/notLogin.css">
+      <link rel="stylesheet" href="./css/teacherLogin.css">
+      <link rel="stylesheet" href="./css/parentLogin.css">
+      <link rel="stylesheet" href="./css/showAlbum.css">
+      <link rel="stylesheet" href="./css/pShowAlbum.css">
+      <link rel="stylesheet" href="./css/selectChild.css">
+      <link rel="stylesheet" href="./css/selectChildAlbum.css">
+      <link rel="stylesheet" href="./css/observation.css">
+      <link rel="stylesheet" href="./css/tDevelopCheck.css">
+      <link rel="stylesheet" href="./css/tICheck.css">
+      <link rel="stylesheet" href="./css/pICheck.css">
+      <link rel="stylesheet" href="./css/photoUpload.css">
+      <link rel="stylesheet" href="./css/attendanceCheck.css">
+      <link rel="stylesheet" href="./css/showDetailAlbum.css">
+      <link rel="stylesheet" href="./css/pShowDetailAlbum.css">
+      <link rel="stylesheet" href="./css/pAttendanceCheck.css">
+
+
       <script src="./js/jquery-3.2.1.min.js"></script>
-      <script src="./js/app.js"></script>
+      <script src="./js/jquery-ui.js"></script>
+
+      <!-- <script src="./js/cordova.js"></script>
+      <script src="./js/cordova_plugin.js"></script> -->
+
+      <script src="./js/index.js"></script>
+      <script src="./js/teacherApp.js"></script>
+      <script src="./js/parentApp.js"></script>
+
     </head>
     <body>
-    <div>
-      <input type="button" class="testChange" value="TestClick">
+
+<!-- ///////////////    로그인 메인 화면           ////////////////////////-->
+
+<div id ="notLogin">
+  <div id="notLoginTop">
+    <div id="notLoginImgLogo"> <img src="./img/niLogoApp.png" /> </div>
+    <div id="notLoginTextLogo"> <p>にっこりケア</p> </div>
+  </div>
+
+  <div id="notLoginView">
+    <div id="loginMainBox">
+      <div id="idBox">
+        <p id="idP">I D</p>
+        <input type="text" id="inputId"/>
+      </div>
+      <div id="pwBox">
+        <p id="pwP">PW</p>
+        <input type="password" id="inputPw"/>
+      </div>
+      <div id="LoginBtn">
+        <p>로그인</p>
+      </div>
     </div>
+  </div>
+</div>
+<!-- ////////////////////로그인 메인 화면 끝////////////////////////////////-->
+<!-- ///////////////    교사 로그인 메인 화면           ////////////////////////-->
+<!-- <div id="tloginMains"> -->
+  <div id="tLoginTop">
+    <div id="sideMenu">
+      <div id="sideMenuBtn">
+        <img id="MenuImg" src="./img/sideMenuBtn.png" >
+      </div>
+
+      <div id="sideMenuListDiv">
+        <div id="tNoticeMain"><p>공지사항</p></div>
+        <div id="attendanceCheck"><p>출석 체크</p></div>
+        <div id="checkListBtn"><p>발달 체크 항목편집</p></div>
+        <div id="tlogoutBtn"><p>로그아웃</p></div>
+      </div>
+    </div>
+
+    <div id="top">
+      <div id="imgLogo">  <img src="./img/niLogoApp.png" /> </div>
+      <div id="textLogo">  <h1>にっこりケア</h1> </div>
+    </div>
+
+    <!-- <div class="main"> -->
+    <div id="teacherMain">
+        <div id="box1"> <h3>관찰일지 작성 <br>도우미</h3> </div>
+        <div id="box2"> <h3>발달 행동 체크</h3> </div>
+        <div id="box3"> <h3>I-Check</h3> </div>
+        <div id="box4"> <h3>원아 지킴이</h3> </div>
+        <div id="box5"> <h3>사진 업로드</h3> </div>
+        <div id="box6"> <h3>앨범 보기</h3> </div>
+    </div>
+  </div>
+
+  <!-- ////////////////////교사 로그인 메인 화면  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 원아 선택           ////////////////////////-->
+  <div id="childSelectBox1">
+     <div id="childSelect1">
+              <!-- <div id="selectImgAndName1"></div> -->
+    </div>
+    <!-- <input id="childSearchBox1" type="text">
+    <div id="childSearchBtn1"><p>검색</p></div> -->
+
+  </div>
+  <!-- ////////////////////교사 원아 선택 끝부분 ////////////////////////////////-->
+  <!-- ///////////////    교사 사진,앨범 관련 원아선택           ////////////////////////-->
+
+  <div id="albumChildSelectBox1">
+     <div id="albumChildSelect1">
+    </div>
+
+    <div id="etcPicture1"><p>기타 사진</p></div>
+    <!-- <div id="etcPicture2"><p>기타 사진</p></div> -->
+
+
+    <!-- <input id="albumChildSearchBox" type="text"> -->
+    <!-- <div id="albumChildSearchBtn"><p>검색</p></div> -->
+  </div>
+
+
+  <!-- ////////////////////교사 사진,앨범 관련 원아선택  끝부분////////////////////////////////-->
+
+
+
+
+  <!-- ///////////////    교사 관찰일지 작성 도우미           ////////////////////////-->
+
+  <div id="tObservation">
+      <!-- 애들 정보 -->
+      <div id="tObChildInfo">
+      </div>
+
+      <!-- 텍스트 -->
+      <div id="tObText">
+
+      <div id="tObCancelBtn1">
+        <p>취소</p>
+      </div>
+
+      <div id="tObSaveBtn1">
+        <p>저장</p>
+      </div>
+
+      <div id="tObTextBox1">
+        <textarea id="textMemo" rows="6" cols="75" placeholder=" 텍스트 메모 입력"></textarea>
+      </div>
+
+
+      <div class="savedTextsTileDiv"><p class="savedTextsTitle">오늘 작성한 메모</p></div>
+      <div id="tObSavedText">
+      </div>
+
+
+      <div id="tObChangeDrawBtn" class="tObChangeDrawBtn">
+        <img src="./img/pen.png" alt="">
+      </div>
+    </div>
+               <!--           구간 나누기              -->
+      <!-- 그리기 -->
+    <div id="tObDraw">
+      <div id="tObCancelBtn2">
+        <p>취소</p>
+      </div>
+
+      <div id="tObSaveBtn2">
+        <p>저장</p>
+      </div>
+      <!-- <canvas id="drawCanvas" height="290">
+        current stock price: $3.15 + 0.15
+      </canvas> -->
+      <!-- start -->
+      <div id="drawDiv">
+      	<div id="drawDiv2" align="center">
+      		<canvas id="drawCanvas"></canvas>
+      	</div>
+        <form method="post" accept-charset="utf-8" name="form1">
+            <input name="hidden_data" id='hidden_data' type="hidden"/>
+        </form>
+        <div id="tObSavedDrawBtn">
+          <p>저장한 그림 보기</p>
+        </div>
+        <div id="tObChangeTextBtn">
+
+          <img src="./img/keyboard.png" alt="">
+        </div>
+      	<div id='drawOptionsDiv'>
+      		<select id="width">
+      			<option value="1">1px</option>
+      			<option value="2">2px</option>
+      			<option value="3" selected>3px</option>
+      			<option value="5">5px</option>
+      			<option value="10">10px</option>
+      			<option value="20">20px</option>
+      		</select>
+      		<select id="color">
+      			<option value="#000000">검정</option>
+      			<option value="#FF0000">빨강</option>
+      			<option value="#00FF00">녹색</option>
+      			<option value="#0000FF">파랑</option>
+      			<option value="#FFFF00">노랑</option>
+      			<option value="#FFFFFF">흰색</option>
+      		</select>
+      		<div id="btnPrev">Back</div>
+      		<div id="btnClea">Clear</div>
+      	</div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <!-- 캔버스로 저장한 이미지 보기 페이지 -->
+    <div id="showSavedImages">
+      <div id="showSavedImagesDiv">
+      </div>
+      <div id="backTObDraw">
+        <p>돌아가기</p>
+      </div>
+
+    </div>
+
+  <!-- ////////////////////교사 관찰일지 작성 도우미  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 발달 행동 체크          ////////////////////////-->
+  <div id="tDevelopCheck">
+      <!-- 선택한 원아 정보 -->
+    <div id="tDevelopChildInfo">
+    </div>
+
+      <!-- 항목 표시 틀-->
+    <div id="tDevelopCheckDiv">
+    </div>
+
+    <table id="tDevelopCheckCancelSave">
+      <tr>
+        <td>
+            <!-- 취소 버튼 -->
+          <div id="tDevelopCheckCancelBtn">
+            <p>취소</p>
+          </div>
+          </td>
+          <td>
+            <!-- 저장 버튼 -->
+          <div id="tDevelopCheckSaveBtn">
+            <p>저장</p>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+
+
+  <!-- ////////////////////교사 발달 행동 체크 끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 I-Check           ////////////////////////-->
+
+
+
+<div id="ICheck">
+
+<!-- 날짜 조정 -->
+  <div class="datepickerDiv">
+    <input type="hidden" class="datepicker" />
+    <div class="dateValueDiv"><p class="dateValueP"></p></div>
+    <!-- <div id="dateSetBtn"><p id="dateSetText">조회</p></div> -->
+  </div>
+
+
+<!-- 버튼3개 묶는 div-->
+  <div id="modeBtns">
+    <div id="tICheck_Notification_btn">
+      <div id="tICheck_Notification_btn2">
+        알림내용
+      </div>
+    </div>
+
+    <div id="tICheck_DevelopGraph_btn">
+      <div id="tICheck_DevelopGraph_btn2">
+        발달사항
+      </div>
+    </div>
+
+    <div id="tICheck_Significant_btn">
+      <div id="tICheck_Significant_btn2">
+        특이사항
+      </div>
+    </div>
+  </div>
+
+  <div id="tICheckMain">
+
+      <div id="tICheck_childBox_div">
+      </div>
+
+      <div id="modeContents">
+      </div>
+
+      <div id="backTurnBtn">
+        <p>원아<br>선택</p>
+      </div>
+
+  </div>
+</div>
+
+
+  <!-- ////////////////////교사 I-Check 끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 원아 지킴이            ////////////////////////-->
+
+
+
+  <!-- ////////////////////교사 원아 지킴이  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 사진 업로드           ////////////////////////-->
+
+  <div id="photoUpload">
+    <div id="photoUpload_childBox_div">
+    </div>
+
+    <!--  이미지 메모 -->
+    <div id="photoMemoDiv">
+      <textarea id = "photoMemo" rows="4" cols="75" placeholder=" 이미지 메모 입력"></textarea>
+    </div>
+
+    <!-- 촬영하기 버튼 -->
+    <div id="takePictureBtn" onload="init()" class="theme">
+      <p>사진 촬영</p>
+    </div>
+
+    <!-- 휴대폰갤러리에서 이미지 찾기 버튼 -->
+    <div id="getGalleryBtn" onload="init()" class="theme">
+      <p>갤러리 찾기</p>
+    </div>
+
+    <!-- 취소 버튼 -->
+    <div id="photoUploadCancelBtn">
+      <p>취소</p>
+    </div>
+
+    <!-- 업로드 버튼 -->
+    <div id="photoUploadBtn">
+      <p>업로드</p>
+    </div>
+
+
+
+
+  </div>
+
+  <!-- ////////////////////교사 사진 업로드  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 앨범 보기           ////////////////////////-->
+
+  <div id="showAlbum">
+
+    <div id="showAlbumOptions">
+      <div id="showAlbumOptionBtn1" class="showAlbumOptionBtn">
+        <p>최근 순</p>
+      </div>
+
+      <div id="showAlbumOptionBtn2" class="showAlbumOptionBtn">
+        <p>오래된 순</p>
+      </div>
+
+      <!-- <div id="showAlbumOptionBtn3" class="showAlbumOptionBtn">
+        <p>날짜</p>
+      </div>
+
+      <div id="showAlbumOptionBtn4" class="showAlbumOptionBtn">
+        <p> ~ </p>
+      </div>
+
+      <div id="showAlbumOptionBtn5" class="showAlbumOptionBtn">
+        <p>날짜</p>
+      </div>
+
+      <div id="showAlbumOptionBtn6" class="showAlbumOptionBtn">
+        <p>조회</p>
+      </div> -->
+
+    </div>
+
+    <div id="showAlbumDiv">
+    </div>
+
+    <div id="showAlbumBackBtn">
+      <p>원아 선택</p>
+    </div>
+
+
+  </div>
+
+  <!-- ////////////////////교사 앨범보기 끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 앨범 상세보기           ////////////////////////-->
+
+  <div id="showDetailAlbum">
+    <div id="detailAlbumImageDiv"></div>
+    <div id="detailAlbumRegistDiv"></div>
+    <div id="detailAlbumMemoDiv"></div>
+    <div id="detailAlbumBackBtn">
+      <p>뒤로</p>
+    </div>
+  </div>
+
+
+  <!-- ////////////////////교사 앨범 상세보기  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 공지사항 메인           ////////////////////////-->
+
+
+
+  <!-- ////////////////////교사 공지사항 메인  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 출석 체크          ////////////////////////-->
+
+  <div id="tAttendanceCheck">
+    <div id="allCheckBtn">
+      <p>모두 출석</p>
+    </div>
+
+    <div id="tAttendanceChildListDiv">
+
+    </div>
+
+    <div id="tAttendanceSaveBtn">
+      <p>완 료</p>
+    </div>
+  </div>
+
+  <!-- ////////////////////교사 출석 체크  끝부분////////////////////////////////-->
+  <!-- ///////////////    교사 체크목록 항목편집            ////////////////////////-->
+
+
+
+  <!-- ////////////////////교사 체크목록 항목편집  끝부분////////////////////////////////-->
+
+
+  <!-- </div> -->
+
+
+
+<!--**************************************************************************************************-->
+<!--**************************************************************************************************-->
+<!--**************************************************************************************************-->
+<!--**************************************************************************************************-->
+<!--**************************************************************************************************-->
+
+
+    <!-- ///////////////    학부모 로그인 후 메인           ////////////////////////-->
+    <div id="pLoginTop">
+      <div id="psideMenu">
+        <div id="psideMenuBtn">
+          <img id="pMenuImg" src="./img/sideMenuBtn.png" >
+        </div>
+
+        <div id="psideMenuListDiv">
+          <div id="pNoticeMain"><p>공지사항</p></div>
+          <div id="plogoutBtn"><p>로그아웃</p></div>
+        </div>
+      </div>
+
+      <div id="ptop">
+        <div id="pimgLogo">  <img src="./img/niLogoApp.png" /> </div>
+        <div id="ptextLogo">  <h1>にっこりケア</h1> </div>
+      </div>
+
+      <!-- <div class="main"> -->
+      <div id="parentMain">
+          <div id="pbox1"> <h3>I-Check</h3> </div>
+          <div id="pbox2"> <h3>출석 정보</h3> </div>
+          <div id="pbox3"> <h3>앨범</h3> </div>
+          <div id="pbox4"> <h3>자녀 정보</h3> </div>
+      </div>
+    </div>
+
+
+
+
+  <!-- ///////////////    학부모 원아 선택           ////////////////////////-->
+    <div id="childSelectBox2">
+       <div id="childSelect2">
+                <!-- <div id="selectImgAndName1"></div> -->
+      </div>
+      <!-- <input id="childSearchBox1" type="text">
+      <div id="childSearchBtn1"><p>검색</p></div> -->
+
+    </div>
+
+<!-- ////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////// 학부모 알림장 확인 //////////////////////////// -->
+
+<div id="pICheck">
+
+  <!-- 날짜 조정 -->
+    <div class="datepickerDiv">
+      <input type="hidden" class="datepicker" />
+      <div class="dateValueDiv"><p class="dateValueP"></p></div>
+      <!-- <div id="dateSetBtn"><p id="dateSetText">조회</p></div> -->
+    </div>
+
+<!-- 버튼3개 묶는 div-->
+  <div id="pmodeBtns">
+    <div id="pICheck_Notification_btn">
+      <div id="pICheck_Notification_btn2">
+        알림내용
+      </div>
+    </div>
+
+    <div id="pICheck_DevelopGraph_btn">
+      <div id="pICheck_DevelopGraph_btn2">
+        발달사항
+      </div>
+    </div>
+
+    <div id="pICheck_Significant_btn">
+      <div id="pICheck_Significant_btn2">
+        특이사항
+      </div>
+    </div>
+  </div>
+
+  <div id="pICheckMain">
+
+      <div id="pICheck_childBox_div">
+      </div>
+
+      <div id="pmodeContents">
+      </div>
+
+      <div id="pbackTurnBtn">
+        <p>원아<br>선택</p>
+      </div>
+
+  </div>
+</div>
+
+
+<!-- ////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////// 출석정보 확인 //////////////////////////// -->
+<div id="pAttendanceCheck">
+
+  <!-- 날짜 조정 -->
+  <div class="pAttDatepickerDiv">
+      <input type="hidden" class="pAttDatepicker" />
+      <div class="pAttdateValueDiv"><p class="pAttDateValueP"></p></div>
+      <!-- <div id="dateSetBtn"><p id="dateSetText">조회</p></div> -->
+  </div>
+
+  <!--  메모 및 원아출석 정보-->
+  <div id="pAttendanceCheckDiv">
+      <div id="pAttendanceChildDiv">
+      </div>
+      <div id="pAttTextDiv">
+        <textarea id="pAttText" rows="4" cols="28" placeholder=" 출석 정보 입력"></textarea>
+      </div>
+
+  <div id="pAttCancelBtn">
+    <p>취소</p>
+  </div>
+
+  <div id="pAttSaveBtn">
+    <p>저장</p>
+  </div>
+
+
+
+  </div>
+
+</div>
+
+
+
+<!-- ////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////   앨범   //////////////////////////// -->
+<div id="pShowAlbum">
+
+  <div id="pShowAlbumOptions">
+    <div id="pShowAlbumOptionBtn1" class="pShowAlbumOptionBtn">
+      <p>최근 순</p>
+    </div>
+
+    <div id="pShowAlbumOptionBtn2" class="pShowAlbumOptionBtn">
+      <p>오래된 순</p>
+    </div>
+
+    <!-- <div id="showAlbumOptionBtn3" class="showAlbumOptionBtn">
+      <p>날짜</p>
+    </div>
+
+    <div id="showAlbumOptionBtn4" class="showAlbumOptionBtn">
+      <p> ~ </p>
+    </div>
+
+    <div id="showAlbumOptionBtn5" class="showAlbumOptionBtn">
+      <p>날짜</p>
+    </div>
+
+    <div id="showAlbumOptionBtn6" class="showAlbumOptionBtn">
+      <p>조회</p>
+    </div> -->
+
+  </div>
+
+  <div id="pShowAlbumDiv">
+  </div>
+
+  <div id="pShowAlbumBackBtn">
+    <p>원아 선택</p>
+  </div>
+
+
+</div>
+
+<!--  학부모 앨범 상세보기 -->
+<div id="pShowDetailAlbum">
+  <div id="pDetailAlbumImageDiv"></div>
+  <div id="pDetailAlbumRegistDiv"></div>
+  <div id="pDetailAlbumMemoDiv"></div>
+  <div id="pDetailAlbumBackBtn">
+    <p>뒤로</p>
+  </div>
+</div>
+
+<!-- ////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////  자녀정보 //////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
 </html>

@@ -1,0 +1,172 @@
+#photoUpload{
+  position: absolute;
+  top:10%;
+  width: 100%;
+  height: 90%;
+  overflow: hidden;
+  background-color: #D9E5FF;
+}
+
+
+/*사진이름 틀*/
+#photoUpload_childBox_div{
+position: relative;
+top:3%;
+left:5%;
+width: 90%;
+height: 15%;
+/*border: 2px red solid;*/
+/*margin-top: 3%;*/
+
+}
+
+#photoUpload_childBox_div > div{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #B2CCFF;
+}
+
+/*사진*/
+#photoUpload_childBox_div > div > img{
+position: relative;
+margin-top: 1%;
+width:30%;
+height: 80%;
+left:2%;
+border: 2px black solid;
+border-radius: 100%;
+}
+
+/*이름 틀*/
+#photoUpload_childBox_div > div > div{
+position: absolute;
+display: inline-block;
+top:10%;
+left:35%;
+width: 62%;
+height: 80%;
+/*padding: 5%;*/
+background-color: #6799FF;
+border-radius: 10%;
+
+}
+/*이름 글씨*/
+#photoUpload_childBox_div > div > div > p{
+position: relative;
+top:35%;
+text-align: center;
+}
+
+/*이미지 메모 텍스트 Div*/
+#photoMemoDiv{
+  position: absolute;
+  top:20%;
+  left: 5%;
+}
+
+/*이미지 메모 텍스트 */
+#photoMemo{
+  position: relative;
+  /*left:4%;*/
+  /*margin-top:3%;*/
+  width: 90%;
+  border: 2px solid black;
+  font-size: 200%;
+}
+
+  /*사진 촬영하기 버튼*/
+#takePictureBtn{
+  position: absolute;
+  top: 44%;
+  left: 20%;
+  width: 30%;
+  height: 5%;
+  border: 2px solid #111111;
+  background-color: white;
+}
+
+/*사진 촬영하기 버튼의 글씨*/
+#takePictureBtn > p{
+  position: relative;
+  top:15%;
+  font-size: 80%;
+  text-align: center;
+}
+
+/*앨범에서 이미지찾기 버튼*/
+#getGalleryBtn{
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: 30%;
+  height: 5%;
+  border: 2px solid #111111;
+  background-color: white;
+}
+
+/*앨범에서 이미지찾기 버튼의 글씨*/
+#getGalleryBtn > p{
+  position: relative;
+  top:15%;
+  font-size: 80%;
+  text-align: center;
+}
+
+/*선택한 이미지 뷰*/
+.GalleryImageView{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 35%;
+  background-color: white;
+}
+
+/*취소 버튼*/
+#photoUploadCancelBtn{
+  position: absolute;
+  top:90%;
+  left: 5%;
+  width: 30%;
+  height: 5%;
+  border: 2px solid black;
+  background: white;
+}
+
+#photoUploadCancelBtn > p {
+  position: relative;
+  top:10%;
+  text-align: center;
+  font-weight: bold;
+}
+
+/*저장 버튼*/
+#photoUploadBtn{
+  position: absolute;
+  /*display: inline-block;*/
+  top:90%;
+  left: 63%;
+  width: 30%;
+  height: 5%;
+  border: 2px solid black;
+  background: white;
+}
+
+#photoUploadBtn > p {
+  position: relative;
+  top:10%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.ggg{
+  position: absolute;
+  /*display: inline-block;*/
+  top:90%;
+  left: 63%;
+  width: 30%;
+  height: 5%;
+  border: 2px solid black;
+  background: white;
+}

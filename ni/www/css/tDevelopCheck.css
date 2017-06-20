@@ -9,38 +9,58 @@ body{
   top:10%;
   width:100%;
   height: 90%;
+  background-color: #FFF1D3;
 }
+
+
+
 
 /* ㅡㅡㅡㅡㅡ    선택원아 정보 관련  ㅡㅡㅡㅡㅡㅡ */
   /*사진이름 틀*/
 #tDevelopChildInfo{
-  position: relative;
+  position: absolute;
+  top:5px;
+  left: 20px;
+  width: 320px;
+  height: 80px;
+  /*position: relative;
   left:5%;
   width: 90%;
-  /*border: 2px red solid;*/
-  top: 3%;
-  background-color: #DCE6F2;
+  top: 3%;*/
+  background-color: #FFB888;
+}
+
+.develop_ImageNameDiv{
+  position: absolute;
+  width: 320px;
+  height: 80px;
 }
 
   /*사진*/
-#tDevelopChildInfo > div > img{
+.develop_ImageName{
   position: relative;
-  margin-top: 1%;
-  left:10%;
-  width:30%;
+  left:10px;
+  top: 3px;
+  width: 70px;
+  height: 70px;
   border: 2px black solid;
   border-radius: 100%;
 }
 
   /*이름 틀*/
 #tDevelopChildInfo > div > div{
-  position: relative;
-  width: 30%;
-  float: right;
-  margin-top: 3%;
-  margin-right: 7%;
-  padding: 7%;
-  background-color: #4F81BD;
+  position: absolute;
+  display: inline-block;
+
+  top:10%;
+  left:35%;
+  width: 62%;
+  height: 80%;
+  /*float: right;*/
+  /*margin-top: 3%;
+  margin-right: 7%;*/
+  /*padding: 7%;*/
+  background-color: #FF7012;
   border-radius: 10%;
 }
 
@@ -48,6 +68,10 @@ body{
   /*이름 글씨*/
 #tDevelopChildInfo > div > div > p{
   position: relative;
+  top:33%;
+  font-weight: bold;
+  font-size: 120%;
+  text-align: center;
 }
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡ  구간 나누기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
@@ -55,62 +79,169 @@ body{
 
 
 
-  /*항목 전체적인 틀*/
-#tDevelopCheckDiv{
+  /*항목 틀 1*/
+#tDevelopCheckDiv1{
   position: relative;
-  top:5%;
-  width: 90%;
-  left: 2%;
-  height: 60%;
-  padding: 2%;
+  top:90px;
+  left: 10px;
+  width: 340px;
+  height: 235px;
   border: 1px solid black;
   overflow-x: hidden;
   overflow-y: scroll;
+  background-color: white;
 }
 
-#tDevelopCheckDiv::-webkit-scrollbar{
+#tDevelopCheckDiv1::-webkit-scrollbar{
   display: none;
 }
 
-  /*항목제목, 값 셋트*/
-#tDevelopCheckDiv > div {
+  /*항목 제목 Div*/
+.checkTitleDiv {
   position: relative;
-  margin-bottom: 20%;
+  width: 336px;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 5%;
+  margin-bottom: 3px;
 }
 
-  /*항목 제목 틀*/
-#tDevelopCheckDiv > div > div {
-  position: relative;
-  border: 1px solid red;
-}
-
-  /*항목 제목 틀 안에 있는 텍스트 항목제목*/
-#tDevelopCheckDiv > div > div > p{
-  position: relative;
+  /*항목 제목 p*/
+.checkTitleDiv > p{
   text-align: center;
 }
 
-  /*항목 값 테이블*/
-#tDevelopCheckDiv > div > table{
+  /*값div 를 가지고 있는 Div*/
+.checkValuesDiv{
   position: relative;
-  width:100%;
+  width: 340px;
+  height: 50px;
+  margin-bottom: 50px;
 }
 
-  /*항목 값 Tr*/
-#tDevelopCheckDiv > div > table > tr{
+  /*값 div*/
+.checkValuesDiv > div {
   position: relative;
-  width:100%;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border: 2px solid #00B1F2;
+  border-radius: 10%;
+}
+
+.checkValuesDiv > div > p{
+  position: relative;
+  top: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 130%;
+
 }
 
 
-  /*항목 값 td*/
-#tDevelopCheckDiv > div > table > tr > label > td{
+
+    /* ㅡㅡㅡㅡㅡ    상태 관련 ㅡㅡㅡㅡㅡㅡ */
+
+#tDevelopCheckDiv2{
   position: relative;
-  /*border: 1px green solid;*/
-  width:20%;
+  top: 110px;
+  left: 10px;
+  width: 340px;
+  height: 155px;
+  /*padding: 2%;*/
+  border: 1px solid black;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: white;
 }
 
-/* ㅡㅡㅡㅡㅡㅡㅡㅡ  구간 나누기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ  */
+#tDevelopCheckDiv2 > div > p{
+  font-weight: bold;
+  font-size: 110%;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#tDevelopCheckDiv2 > div > div{
+  border: 1px solid #296DA5;
+  border-radius: 15%;
+}
+
+#checkBoxDiv1{
+  position: absolute;
+  display: inline-block;
+  top:5px;
+  left: 5px;
+  width: 140px;
+  height: 70px;
+  /*border: 1px solid black;*/
+}
+
+#checkBoxDiv1 > div {
+  position: relative;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 4px;
+  margin-left: 5px;
+
+}
+
+#checkBoxDiv2{
+  position: absolute;
+  display: inline-block;
+  top:5px;
+  left: 165px;
+  width: 165px;
+  height: 70px;
+  /*border: 1px solid black;*/
+}
+
+#checkBoxDiv2 > div {
+  position: relative;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 4px;
+  margin-left: 7px;
+}
+
+#checkBoxDiv3{
+  position: absolute;
+  display: inline-block;
+  top:80px;
+  left: 5px;
+  width: 140px;
+  height: 70px;
+  /*border: 1px solid black;*/
+}
+
+#checkBoxDiv3 > div {
+  position: relative;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 4px;
+  margin-left: 5px;
+}
+
+#checkBoxDiv4{
+  position: absolute;
+  display: inline-block;
+  top:80px;
+  left: 155px;
+  width: 180px;
+  height: 70px;
+  /*border: 1px solid black;*/
+}
+
+#checkBoxDiv4 > div {
+  position: relative;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 3px;
+  margin-left: 5px;
+}
+
+
     /* ㅡㅡㅡㅡㅡ    버튼 관련  ㅡㅡㅡㅡㅡㅡ */
 
 
@@ -118,7 +249,8 @@ body{
   position: relative;
   width: 90%;
   left:5%;
-  margin-top:15%;
+  top: 120px;
+
   /*border: 1px solid black;*/
 }
 

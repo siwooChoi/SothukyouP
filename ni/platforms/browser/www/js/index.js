@@ -1,46 +1,44 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+$(document).ready(function(){
+  // 실행시 바로 로그인화면 보여주기
+    // $('#notLoginTop').show();
+    // $('#notLoginView').show();
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+  // 실행시 바로 교사메인 보여주기
+  $("#sideMenuListDiv").hide();
+  $('#tLoginTop').show();
+  $('#teacherMain').show();
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+  // 실행시 바로 학부모메인 보여주기
+  // $("#psideMenuListDiv").hide();
+  // $('#pLoginTop').show();
+  // $('#parentMain').show();
 
-        console.log('Received Event: ' + id);
-    }
-};
 
-app.initialize();
+
+
+  // 교사아이디로 로그인버튼 클릭
+
+    $('#LoginBtn').unbind("click").bind("click", function(){
+
+      if( $("#inputId").val() == "ttt") {
+        $('#notLoginTop').hide();
+        $('#notLoginView').hide();
+
+        $('#tLoginTop').show();
+        $('#sideMenuListDiv').hide();
+        $('#teacherMain').show();
+      } else if($("#inputId").val() == "ppp"){
+        $('#notLoginTop').hide();
+        $('#notLoginView').hide();
+
+        $('#pLoginTop').show();
+        $('#psideMenuListDiv').hide();
+        $('#parentMain').show();
+      } else{
+        alert('교사아이디 ttt,   학부모아이디 ppp');
+      }
+
+
+    });
+});

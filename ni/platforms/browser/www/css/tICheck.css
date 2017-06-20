@@ -1,0 +1,485 @@
+
+#ICheck{
+  position: absolute;
+  top:10%;
+  width: 100%;
+  height: 90%;
+  /*height: 100%;*/
+  background-color: #FFFFE0;
+  overflow: hidden;
+}
+
+  /*달력버튼*/
+.datepickerDiv{
+  position: relative;
+  left:-2%;
+  width: 100%;
+  height: 20%;
+}
+  /*달력버튼의 이미지*/
+.datepickerDiv > img {
+    position: absolute;
+    width: 19%;
+    display: inline-block;
+    z-index: 1;
+}
+
+
+
+  /*날짜 Text 담는 Div*/
+.dateValueDiv{
+    position: absolute;
+    width: 100%;
+    top:10%;
+    /*left: 35%;*/
+    display: inline-block;
+}
+  /*날짜 Text*/
+.dateValueP{
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  font-size: 150%;
+  font-weight: bold;
+  text-align: center;
+  color: #2C3E50;
+  text-shadow: 2px 2px #aaaaaa;
+}
+
+  /*조회버튼 Div*/
+/*#dateSetBtn{
+  position: absolute;
+  display: inline-block;
+  top:7%;
+  left: 65%;
+  width: 20%;
+  height: 30%;
+  background-color: #aaaaaa;
+  border: 2px solid white;
+  -webkit-box-shadow:0 2px 5px #555;
+}*/
+  /*조회버튼 Text*/
+/*#dateSetText{
+  position: relative;
+  text-align: center;
+  top:20%;
+  color: white;
+  font-weight: bold;
+}*/
+
+
+/*버튼3개를 담고있는 div*/
+#modeBtns{
+  position: absolute;
+  top:10%;
+  width: 100%;
+  height: 10%;
+
+}
+
+
+/*각 버튼 3개 크기 지정*/
+#modeBtns > div{
+  position: relative;
+  width: 20%;
+  height: 100%;
+}
+
+  /*알림내용 버튼*/
+#tICheck_Notification_btn{
+  position: relative;
+  display: inline-block;
+  left: 14%;
+  border: 2px solid white;
+  background-color: white;
+  /*box-shadow:3 3px 4px black;
+  -moz-box-shadow:0 1px 4px #888;*/
+  -webkit-box-shadow:0 2px 5px #555;
+}
+
+#tICheck_Notification_btn > div{
+  position: relative;
+  margin: 2% 2% 2% 2%;
+  background-color: #FF5E00;
+  width:98%;
+  height: 97%;
+
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #555;
+  line-height: 350%;
+}
+
+  /*발달사항 버튼*/
+#tICheck_DevelopGraph_btn{
+  position: relative;
+  display: inline-block;
+  left:19%;
+  background-color: white;
+  -webkit-box-shadow:0 2px 5px #555;
+}
+
+#tICheck_DevelopGraph_btn > div{
+  position: relative;
+  margin: 3%;
+  background-color: #FFCA6C;
+  width:94%;
+  height: 94%;
+
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #555;
+  line-height: 350%;
+}
+
+
+  /*특이사항 버튼*/
+#tICheck_Significant_btn{
+  position: relative;
+  display: inline-block;
+  left:24%;
+  background-color: white;
+  -webkit-box-shadow:0 2px 5px #555;
+}
+
+#tICheck_Significant_btn > div{
+  position: relative;
+  margin: 3%;
+  background-color: #FFCA6C;
+  width:94%;
+  height: 94%;
+
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #555;
+  line-height: 350%;
+}
+
+
+
+/*탑메뉴 아래의 전체*/
+#tICheckMain{
+ position: absolute;
+ top:20%;
+ width: 100%;
+ height: 75%;
+
+}
+
+#tICheckMain > div{
+  position: absolute;
+  display: inline-block;
+}
+
+
+#tICheck_childBox_div{
+  /*position: relative;*/
+  /*display: inline-block;*/
+  top:15%;
+  left: 3%;
+  width: 25%;
+  height: 30%;
+  /*border: 1px black solid;*/
+
+
+}
+
+  /*원아 사진,이름 담고있는 div*/
+.tICheck_childBox{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*background-color: gray;*/
+}
+
+  /*원아 사진 담고있는 div*/
+.tICheck_imgsDiv{
+  position: relative;
+  width: 100%;
+  height:75%;
+  /*border: 2px black solid;*/
+}
+
+  /*원아 사진 img*/
+.tICheck_imgsDiv > img{
+  position: relative;
+  width: 100%;
+  height: 95%;
+  border: 2px black solid;
+}
+
+  /*원아 이름 담고있는 div*/
+.tICheck_namesDiv{
+  position: relative;
+  top:5%;
+  width: 100%;
+  height:20%;
+  border: 2px solid black;
+  background-color: #FEFE00;
+}
+
+  /*원아이름 글씨*/
+.tICheck_namesDiv > p {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  line-height: 200%;
+}
+
+  /*모드 화면*/
+#modeContents{
+  display: inline-block;
+  top:5%;
+  left: 30%;
+  width: 68%;
+  height: 92%;
+  /*background-color: #dddddd;*/
+}
+
+/*알림내용 div*/
+.notification_div{
+position: relative;
+left: 2%;
+width: 96%;
+height: 60%;
+overflow-x: hidden;
+overflow-y: scroll;
+border: 2px solid gold;
+background: white;
+}
+
+/*알림내용 div 스크롤 바 보이지 않게 하기*/
+.notification_div::-webkit-scrollbar{
+display: none;
+}
+
+/*알림내용의 댓글 div*/
+.notificationComments_div{
+position: relative;
+top:3%;
+left:2%;
+width: 96%;
+height: 45%;
+border: 2px solid gold;
+background: white;
+overflow-x: hidden;
+}
+
+/*댓글 보여주는 div*/
+.viewUploadedComment_div{
+position: relative;
+width: 100%;
+height: 79%;
+overflow-x: hidden;
+overflow-y: scroll;
+overflow: auto;
+}
+/*댓글 보여주는 div 스크롤바 없애기*/
+.viewUploadedComment_div::-webkit-scrollbar{
+display: none;
+}
+
+/*교사타이틀, 교사댓글를 포함한 Div*/
+.teacherCommentBox{
+position: relative;
+top:5%;
+}
+
+/*교사 타이틀*/
+.teacherTrue1{
+position: relative;
+width: 40%;
+left: 5%;
+border-radius: 20%;
+background-color: pink;
+text-align: center;
+}
+
+/*교사 댓글*/
+.teacherCommentBox > p{
+position: relative;
+left: 5%;
+margin-bottom: 5%;
+}
+
+
+/*학부모타이틀, 학부모댓글를 포함한 Div*/
+.parentCommentBox{
+position: relative;
+width: 100%;
+}
+
+/*학부모 타이틀*/
+.teacherTrue0{
+position: relative;
+width: 40%;
+left: 55%;
+border-radius: 20%;
+background-color: skyblue;
+text-align: center;
+}
+
+/*학부모 댓글*/
+.parentCommentBox > p{
+position: relative;
+left:40%;
+margin-bottom: 5%;
+}
+
+
+/*댓글작성 버튼 div*/
+.uploadComment_div{
+position: relative;
+left: 70%;
+width: 25%;
+height: 19%;
+border: 1px black solid;
+}
+
+/*댓글 작성버튼의 글씨*/
+.uploadComment_div > p{
+position: relative;
+line-height: 200%;
+text-align: center;
+}
+
+
+/*.notifiCommentInput_div > * {
+  position: absolute;
+}*/
+
+  /*댓글 입력 input*/
+/*.notifiCommentInput{
+  border: none;
+}*/
+
+  /*발달사항 그래프 div1*/
+.developGraph_div1{
+  position: relative;
+  left: 2%;
+  width: 96%;
+  height: 48%;
+  border: 2px solid orange;
+  background: white;
+}
+
+  /*발달사항 그래프div2*/
+.developGraph_div2{
+  position: relative;
+  top:4%;
+  left: 2%;
+  width: 96%;
+  height: 57%;
+  border: 2px solid orange;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: white;
+}
+
+  /*발달사항 그래프div2 의 이름*/
+.developGraph_div2 > .developGraph_div2_Name{
+  position: relative;
+  left: 7%;
+  width: 85%;
+  height: 18%;
+  /*background-color: #FFA2FF;*/
+  background-color: #ffafd8;
+
+  top:7%;
+  font-weight: bold;
+}
+
+  /*발달사항 그래프div2 의 이름 p태그*/
+.developGraph_div2 > .developGraph_div2_Name > p{
+  position: relative;
+  text-align: center;
+  line-height: 200%;
+}
+
+  /*그래프 들이 들어있는 Div*/
+.valueGraphDiv{
+  position: relative;
+  top:15%;
+  left:5%;
+  width:90%;
+}
+
+  /*체크 없음을 알리는 메시지*/
+.valueGraphDiv > div{
+  position: relative;
+  text-align: center;
+}
+
+
+  /*발달사항 그래프div2 스크롤바 없애기*/
+.developGraph_div2::-webkit-scrollbar{
+  display: none;
+}
+
+  /*그래프 값*/
+.ui-progressbar-value{
+  position: relative;
+  background-color: #fdfa88;
+}
+
+  /*그래프 틀 */
+.ui-progressbar {
+  position: relative;
+}
+
+
+.developValueDiv{
+  margin-bottom: 2%;
+}
+
+  /*그래프의 글씨*/
+.developValueDiv > .progress-label {
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  font-weight: bold;
+  /*text-shadow: 1px 1px 0 #fff;*/
+  z-index: 1;
+}
+
+  /*특이사항div*/
+.significant_div{
+  position: relative;
+  top:5%;
+  left: 2%;
+  width: 96%;
+  height: 90%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: 2px solid brown;
+  background: white;
+}
+
+/*특이사항 div 스크롤 바 보이지 않게 하기*/
+.significant_div::-webkit-scrollbar{
+  display: none;
+}
+
+
+  /*뒤로 돌아가기 버튼*/
+#backTurnBtn{
+  top:75%;
+  left: 5%;
+  width: 20%;
+  height: 15%;
+  background-color: #DCE6F2;
+  /*background-color: red;*/
+}
+
+#backTurnBtn > p {
+  position: relative;
+  top:20%;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+
+}

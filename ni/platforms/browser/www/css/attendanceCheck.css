@@ -1,0 +1,150 @@
+/*전반적인 틀*/
+#tAttendanceCheck{
+  position: absolute;
+  top:10%;
+  width: 100%;
+  height: 90%;
+  background-color: #DDE5F2;
+}
+
+/*모두 출석 버튼*/
+#allCheckBtn{
+  position: absolute;
+  top:2%;
+  left: 70%;
+  width: 27%;
+  height: 7%;
+  background-color: #00B1F2;
+  border: 2px solid #296DA5;
+  border-radius: 15%;
+}
+
+#allCheckBtn > p{
+  position: relative;
+  text-align: center;
+  top: 25%;
+  /*font-size: 120%;*/
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px #aaaaaa;
+}
+
+/*원아 리스트Div*/
+#tAttendanceChildListDiv{
+  position: absolute;
+  top: 11%;
+  left:3%;
+  width: 93%;
+  height: 75%;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+  /*원아 리스트Div 스크롤바 안보이게하기*/
+#tAttendanceChildListDiv::-webkit-scrollbar{
+  display: none;
+}
+
+  /*원아 이미지div, 이름div 를 담고있는 각원아의 틀*/
+#tAttendanceChildListDiv > div{
+  position: relative;
+  margin-top: 3%;
+  width: 100%;
+  height: 25%;
+  background-color: #82B4E4;
+}
+
+  /*원아 이미지 담고있는 div*/
+.atd_imageDiv{
+  position: absolute;
+  top:5%;
+  left: 3%;
+  width: 25%;
+  height: 70%;
+  border-radius: 20%;
+}
+  /*원아 이미지*/
+.atd_imageDiv > img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20%;
+}
+
+  /*원아 이름 담고 있는 div*/
+.atd_NameDiv{
+  position: absolute;
+  top:75%;
+  left: 2%;
+  width: 25%;
+}
+
+  /* 원아 이름*/
+.atd_NameDiv > p{
+  position: relative;
+}
+
+/* 출석 버튼 */
+.tAttendance{
+  position: absolute;
+  top:14%;
+  left:32%;
+  width: 20%;
+  height: 72%;
+  background-color: white;
+  border: 2px solid #00B1F2;
+  border-radius: 20%;
+}
+
+/* 조퇴 버튼*/
+.tEarlyLeave{
+  position: absolute;
+  top:14%;
+  left:55%;
+  width: 20%;
+  height: 72%;
+  background-color: white;
+  /*border: 2px solid #FFFF68;*/
+  border: 2px solid gold;
+  border-radius: 20%;
+}
+
+/* 결석 버튼*/
+.tAbsence{
+  position: absolute;
+  top:14%;
+  left:78%;
+  width: 20%;
+  height: 72%;
+  background-color: white;
+  border: 2px solid #FF48FF;
+  border-radius: 20%;
+}
+
+.tAttendance > p, .tEarlyLeave > p, .tAbsence > p{
+  position: relative;
+  top: 30%;
+  font-weight: bold;
+  font-size: 120%;
+  text-align: center;
+}
+
+/*완료버튼*/
+#tAttendanceSaveBtn{
+  position: absolute;
+  top:88%;
+  left: 30%;
+  width: 40%;
+  height: 10%;
+  border-radius: 15%;
+  background-color: #aaaaaa;
+}
+
+#tAttendanceSaveBtn > p {
+  position: relative;
+  text-align: center;
+  top: 25%;
+  font-size: 120%;
+  font-weight: bold;
+}

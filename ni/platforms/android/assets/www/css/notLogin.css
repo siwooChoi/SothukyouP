@@ -1,59 +1,138 @@
 
- /*상단 띄우기*/
-#notLoginTop {
+#noIDLoginBtn{
   position: absolute;
-  top:10%;
-  width:100%;
-  height:10%;
+  top: 90%;
+  left: 50%;
+  width: 50%;
+
+  z-index: 1;
+  /*border: 2px solid black;*/
+  background-color: silver;
+  font-weight: bold;
+  font-size: 120%;
   text-align: center;
-  line-height: 300%;
-}
-  /*로고이미지*/
-#notLoginImgLogo > img{
-  position: absolute;
-  left: 5%;
-  width:25%;
-}
-  /*로고 텍스트*/
-#notLoginTextLogo{
-  position: relative;
-  left: 30%;
-  top:8%;
-  line-height: 400%;
-  width:65%;
-  height:130%;
-  font-size: 22px;
-  background-color: #FF7012;
-  color:white;
 }
 
+
+
+
+
+#notLogin{
+  position: absolute;
+  width:100%;
+  height: 100%;
+  /*background-image: url('../img/background.jpg');*/
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#notLogin::webkit-scrollbar{
+  display: none;
+}
+
+ /*이미지 및 로고 포함 Div*/
+#notLoginTop {
+  position: absolute;
+  top:30px;
+  width:360px;
+  height:150px;
+  text-align: center;
+  /*line-height: 300%;*/
+  /*background-color: white;*/
+}
+
+
+  /*로고 이미지 Div*/
+#notLoginImgLogo{
+  position: absolute;
+  top: 25px;
+  left: 15px;
+  width: 100px;
+  height: 100px;
+}
+
+  /*로고이미지*/
+#notLoginImgLogo > img{
+  position: relative;
+  width:100px;
+  height: 100px;
+}
+  /*로고 텍스트 Div*/
+#notLoginTextLogo{
+  position: absolute;
+  /*display: inline-block;*/
+  top:40px;
+  left: 120px;
+  width:220px;
+  height:80px;
+  background-color: #FF7012;
+}
+
+  /*로고 텍스트*/
+#notLoginTextLogo > p{
+  position: relative;
+  color: white;
+  top: 15px;
+  font-size: 200%;
+  font-weight: bold;
+  top:23px;
+}
+
+  /* top 아래의 전반적 부분*/
+#notLoginView{
+  position: absolute;
+  top: 180px;
+  width: 360px;
+  height: 405px;
+}
   /*로그인 메인박스 테두리*/
 #loginMainBox{
-  position: absolute;
-  top: 30%;
-  left:10%;
-  width:80%;
-  height:50%;
+  position: relative;
+  left:10px;
+  width:335px;
+  height:300px;
   border : 3px black solid;
 }
 
   /*ID입력란*/
-#idTextBox{
-  position: absolute;
-  top: 25%;
-  left:3%;
+#idBox{
+  position: relative;
+  /*display: inline-block;*/
+  width: 250px;
+  top: 55px;
+  left: 35px;
+  /*left:15%;*/
+}
+
+#idBox > input, #pwBox > input {
+  position: relative;
+  width: 200px;
+  height: 30px;
+  font-size: 120%;
+  text-align-last: center;
+}
+
+#idP{
+  position: relative;
+  display: inline-block;
+  font-size: 120%;
+
 }
 
   /*PW입력란*/
-#pwTextBox{
-  position: absolute;
-  top:35%;
-  left:3%;
+#pwBox{
+  position: relative;
+  /*display: inline-block;*/
+  width: 250px;
+  top:65px;
+  left: 28px;
+
 }
 
-  /*ID, PW 글씨*/
-#textID, #textPW{
-  width:15%;
+#pwP{
+  position: relative;
+  display: inline-block;
+  font-size: 120%;
 }
 
   /*ID,PW input태그*/
@@ -63,17 +142,25 @@
 
   /*로그인 버튼*/
 #LoginBtn{
-  position: absolute;
-  top:43.1%;
-  left:67%;
+  position: relative;
+  /*display: inline-block;*/
+  /*top: 30%;*/
+  top:95px;
+  width: 150px;
+  height: 50px;
+  left: 90px;
+  /*left:35%;
+  width:30%;
+  height: 15%;*/
   background-color: #01B0F1;
-  width:20%;
-  height: 9%;
   border-radius: 15%;
 }
   /*로그인 버튼 글씨*/
 #LoginBtn > p{
+  position: relative;
   text-align: center;
   color: white;
-  line-height: 350%;
+  top: 20%;
+  font-size: 150%;
+  font-weight: bold;
 }
